@@ -40,6 +40,7 @@ namespace API
 
                     //ეს გააკეთებს ბაზის აფდეით არსებული მიგრაციებით, ისე რო ჩვენით დატაბაზის აფდეითი არ გვჭირდება. თავისით მიხედავს დასტარტვაზე
                     await context.Database.MigrateAsync();
+                    await StoreContextSeed.SeedAsync(context, loggerFactory);
                 }
                 catch (Exception ex)
                 {
