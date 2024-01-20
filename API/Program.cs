@@ -14,6 +14,7 @@ namespace API
             builder.Services.AddDbContext<StoreContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
