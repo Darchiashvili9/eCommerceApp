@@ -1,9 +1,7 @@
-﻿using API.Errors;
+﻿using API.Extensions;
 using API.Helpers;
 using API.Middleware;
-using Core.Interfaces;
 using Infrastructure.Data;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API
@@ -12,53 +10,31 @@ namespace API
     {
         public static async Task Main(string[] args)
         {
+            #region SERVICES
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddAutoMapper(typeof(MappingProfiles));
             builder.Services.AddControllers();
             builder.Services.AddDbContext<StoreContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
-            builder.Services.AddAutoMapper(typeof(MappingProfiles));
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddApplicationServices();
+            builder.Services.AddSwaggerDocumentation();
+            //  builder.Services.AddEndpointsApiExplorer();
+            #endregion
 
-            builder.Services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.InvalidModelStateResponseFactory = actionContext =>
-                {
-                    var errors = actionContext.ModelState
-                                                        .Where(err => err.Value.Errors.Count > 0)
-                                                        .SelectMany(x => x.Value.Errors)
-                                                        .Select(x => x.ErrorMessage).ToArray();
-
-                    var errorResponse = new ApiValidationErrorResponse
-                    {
-                        Errors = errors
-                    };
-
-                    return new BadRequestObjectResult(errorResponse);
-                };
-            });
-
+            #region MIDDLEWARE
             var app = builder.Build();
 
-
             app.UseMiddleware<ExceptionMiddleware>();
-
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
-
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseStaticFiles();
             app.UseAuthorization();
+            app.UseSwaggerDocumantation();
             app.MapControllers();
+            #endregion
 
+            #region db seeding
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -78,6 +54,7 @@ namespace API
                     logger.LogError(ex, "migraciis dros moxda erori");
                 }
             }
+            #endregion
 
             app.Run();
         }
