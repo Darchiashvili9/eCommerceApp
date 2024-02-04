@@ -18,6 +18,13 @@ namespace API
             builder.Services.AddDbContext<StoreContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddApplicationServices();
             builder.Services.AddSwaggerDocumentation();
+            builder.Services.AddCors(ops =>
+            {
+                ops.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                });
+            });
             //  builder.Services.AddEndpointsApiExplorer();
             #endregion
 
@@ -29,6 +36,7 @@ namespace API
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
             app.UseSwaggerDocumantation();
             app.MapControllers();
