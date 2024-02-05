@@ -10,9 +10,8 @@ namespace API
     {
         public static async Task Main(string[] args)
         {
-            #region SERVICES
             var builder = WebApplication.CreateBuilder(args);
-
+            #region SERVICES
             builder.Services.AddAutoMapper(typeof(MappingProfiles));
             builder.Services.AddControllers();
             builder.Services.AddDbContext<StoreContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -28,9 +27,8 @@ namespace API
             //  builder.Services.AddEndpointsApiExplorer();
             #endregion
 
-            #region MIDDLEWARE
             var app = builder.Build();
-
+            #region MIDDLEWARE
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
             app.UseHttpsRedirection();
