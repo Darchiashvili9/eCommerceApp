@@ -7,7 +7,7 @@ import mkcert from 'vite-plugin-mkcert'
 export default defineConfig({
     plugins: [react(), mkcert()],
     server: {
-        port: 4000,
+        port: 4200,
         strictPort: false,
     },
     preview: {
