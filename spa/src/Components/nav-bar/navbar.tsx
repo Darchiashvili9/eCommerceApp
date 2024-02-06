@@ -18,7 +18,6 @@ function navbar() {
                 <a className="position-relative">
                     <i className="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
                     <div className="cart-no">9</div>
-
                 </a>
                 <a className="me-3 py-2 btn btn-outline-secondary mr-2" href="#">Login</a>
                 <a className="me-3 py-2 btn btn-outline-secondary mr-3" href="#">Sign up</a>
