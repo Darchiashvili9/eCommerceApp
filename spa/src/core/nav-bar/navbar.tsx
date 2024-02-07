@@ -1,6 +1,6 @@
 import "./navbar.css";
 
-function navbar() {
+function Navbar() {
     console.log("navbar");
 
     return (
@@ -27,4 +27,4 @@ function navbar() {
     );
 }
 
-export default navbar;
+export default Navbar;
