@@ -1,7 +1,7 @@
 import './App.css'
-import { IPagination } from './Components/models/pagination';
-import { IProduct } from './Components/models/products';
-import navbar from "./Components/nav-bar/navbar"
+import { IPagination } from '../models/pagination';
+import { IProduct } from '../models/products';
+import navbar from "./components/nav-bar/navbar"
 import { useEffect, useState } from 'react';
 
 
