@@ -11,13 +11,9 @@ function App() {
             <Navbar />
 
             <div className="container">
-                <h1>
-                    spa
-                </h1>
 
-
+                <Shop />
             </div>
-            <Shop />
 
         </div>
     );
