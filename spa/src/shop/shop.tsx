@@ -95,11 +95,11 @@ function Shop() {
 
 
 
-                    <div className="d-flex flex-row" style={{ borderColor: "black", borderWidth: "5px", border: "solid" }}>
-                        <div className=" col-4">
+                    <div>
+                        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                             {
                                 products?.map((ind) =>
-                                    <div key={ind.id}>
+                                    <div key={ind.id} className="col">
                                         <ProductItem />
                                     </div>
                                 )
