@@ -9,9 +9,9 @@ function Navbar() {
             <img src="/public/images/logo.png" alt="logo"></img>
 
             <nav className="my-2 my-md-0 mr-md-3 text-uppercase">
-                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Home</a>
-                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Shop</a>
-                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Contact</a>
+                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Home </a>
+                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#"> Shop  </a>
+                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#"> Contact</a>
             </nav>
 
             <div className="d-flex align-items-center">

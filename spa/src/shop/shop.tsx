@@ -2,15 +2,20 @@ import { useState, useEffect } from "react";
 import { IProduct } from '../shared/models/products';
 import ShopService from "./shop.service";
 import ProductItem from "./product-item";
+import { IBrand } from "../shared/models/brand";
+import { IType } from "../shared/models/productType";
 
 function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
-    //const [, setError] = useState("");
+    const [brands, setBrands] = useState<IBrand[]>();
+    const [types, setTypes] = useState<IType[]>();
 
     useEffect(() => {
         (async function () {
             try {
                 setProducts(await ShopService.getProducts());
+                setBrands(await ShopService.getBrands());
+                setTypes(await ShopService.getTypes());
             }
             catch (error) {
                 console.log(error);
@@ -32,19 +37,23 @@ function Shop() {
 
                     <h5 className="text-warning ml-3">Brands</h5>
                     <ul className="list-group my-3">
-                        <li className="list-group-item active" aria-current="true">An active item</li>
-                        <li className="list-group-item">A second item</li>
-                        <li className="list-group-item">A third item</li>
-                        <li className="list-group-item">A fourth item</li>
-                        <li className="list-group-item">And a fifth one</li>
+                        {
+                            brands?.map((brand, index) =>
+                                <li className="list-group-item" key={index}>
+                                    {brand.name}
+                                </li>
+                            )
+                        }
                     </ul>
                     <h5 className="text-warning ml-3">Types</h5>
                     <ul className="list-group my-3">
-                        <li className="list-group-item active" aria-current="true">An active item</li>
-                        <li className="list-group-item">A second item</li>
-                        <li className="list-group-item">A third item</li>
-                        <li className="list-group-item">A fourth item</li>
-                        <li className="list-group-item">And a fifth one</li>
+                        {
+                            types?.map((type, index) =>
+                                <li className="list-group-item" key={index}>
+                                    {type.name}
+                                </li>
+                            )
+                        }
                     </ul>
                 </section>
                 <section className="col-9">
@@ -62,9 +71,9 @@ function Shop() {
                     <div>
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                             {
-                                products?.map((product, index) => 
+                                products?.map((product, index) =>
                                     <div className="col-4 mb-4">
-                                         <ProductItem prod={product} key={index} />
+                                        <ProductItem prod={product} key={index} />
                                     </div>
                                 )
                             }
