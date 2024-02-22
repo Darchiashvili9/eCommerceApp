@@ -5,7 +5,7 @@ import "./shop.css";
 import ProductItem from "./product-item";
 
 function Shop() {
-    var [products, setProducts] = useState<IProduct[]>();
+    const [products, setProducts] = useState<IProduct[]>();
     //const [, setError] = useState("");
 
     useEffect(() => {
@@ -19,39 +19,7 @@ function Shop() {
         })();
     }, []);
 
-
     return (
-        //<div>
-        //    <table className="table table-striped" aria-labelledby="tabelLabel">
-        //        <thead>
-        //            <tr>
-        //                <th>Date</th>
-        //                <th>Temp. (C)</th>
-        //                <th>Temp. (F)</th>
-        //                <th>Summary</th>
-        //                <th>Summary</th>
-        //            </tr>
-        //        </thead>
-        //        <tbody>
-        //            {products?.map(products =>
-        //                <tr key={products.description}>
-        //                    <td>{products.name}</td>
-        //                    <td>{products.id}</td>
-        //                    <td>{products.pictureUrl}</td>
-        //                    <td>{products.productBrand}</td>
-        //                    <td>{products.productType}</td>
-        //                    <td>{products.price}</td>
-
-        //                </tr>
-        //            )}
-        //        </tbody>
-        //    </table>
-        //</div>
-
-
-
-
-
         <div className="container">
             <div className="row">
                 <section className="col-3">
@@ -92,23 +60,17 @@ function Shop() {
 
                         </div>
                     </div>
-
-
-
                     <div>
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                             {
-                                products?.map((ind) =>
-                                    <div key={ind.id} className="col">
-                                        <ProductItem />
+                                products?.map((product, index) => 
+                                    <div className="col">
+                                         <ProductItem prod={product} key={index} />
                                     </div>
                                 )
                             }
                         </div>
                     </div>
-
-
-
                 </section>
             </div>
         </div>
