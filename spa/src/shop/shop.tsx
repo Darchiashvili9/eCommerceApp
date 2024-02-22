@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { IProduct } from '../shared/models/products';
 import ShopService from "./shop.service";
-import "./shop.css";
 import ProductItem from "./product-item";
 
 function Shop() {
@@ -64,7 +63,7 @@ function Shop() {
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                             {
                                 products?.map((product, index) => 
-                                    <div className="col">
+                                    <div className="col-4 mb-4">
                                          <ProductItem prod={product} key={index} />
                                     </div>
                                 )
