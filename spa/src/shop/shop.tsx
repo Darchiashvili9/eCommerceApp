@@ -9,13 +9,15 @@ function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
     const [brands, setBrands] = useState<IBrand[]>();
     const [types, setTypes] = useState<IType[]>();
-    let brandIdSelected: number;
-    let typeIdSelected: number;
+  //  let brandIdSelected: number;
+ //   let typeIdSelected: number;
 
-  //  let [typeIdSelected, setTypeIdSelected] = useState<number>();
+    const [typeIdSelected, setTypeIdSelected] = useState<number>();
+    const [brandIdSelected, setbrandIdSelected] = useState<number>();
 
 
-    const [active, setActive] = useState<any>();
+    const [activeBrand, setActiveBrand] = useState<number>();
+    const [activeType, setActiveType] = useState<number>();
 
 
 
@@ -59,16 +61,6 @@ function Shop() {
         }
     }
 
-    const onBrandSelected = (id: number) => {
-        brandIdSelected = id;
-        getProducts();
-    }
-
-    const onTypeSelected = (id: number) => {
-        typeIdSelected = id;
-        getProducts();
-    }
-
     return (
         <div className="container">
             <div className="row">
@@ -85,11 +77,12 @@ function Shop() {
                     <ul className="list-group my-3">
                         {
                             brands?.map((brand, index) =>
-                                <li className={`list-group-item ${active == brand && 'active'}`}
+                                <li className={`list-group-item ${activeBrand == brand.id && 'active'}`}
                                     key={index}
                                     onClick={() => {
-                                        onBrandSelected(brand.id);
-                                        setActive(brand);
+                                        setbrandIdSelected(brand.id);
+                                        setActiveBrand(brand.id);
+                                        getProducts();
                                     }}>
                                     {brand.name}
                                 </li>
@@ -100,12 +93,12 @@ function Shop() {
                     <ul className="list-group my-3">
                         {
                             types?.map((type, index) =>
-                                <li className={`list-group-item ${active == type && 'active'}`}
+                                <li className={`list-group-item ${activeType == type.id && 'active'}`}
                                     key={index}
                                     onClick={() => {
-                                        onTypeSelected(type.id);
+                                        setTypeIdSelected(type.id);
+                                        setActiveType(type.id);
                                         getProducts();
-                                        setActive(type);
                                     }}>
                                     {type.name}
                                 </li>
