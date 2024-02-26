@@ -9,19 +9,65 @@ function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
     const [brands, setBrands] = useState<IBrand[]>();
     const [types, setTypes] = useState<IType[]>();
+    let brandIdSelected: number;
+    let typeIdSelected: number;
+
+  //  let [typeIdSelected, setTypeIdSelected] = useState<number>();
+
+
+    const [active, setActive] = useState<any>();
+
+
 
     useEffect(() => {
-        (async function () {
+        (function () {
             try {
-                setProducts(await ShopService.getProducts());
-                setBrands(await ShopService.getBrands());
-                setTypes(await ShopService.getTypes());
+                getProducts();
+                getBrands();
+                getTypes();
             }
             catch (error) {
                 console.log(error);
             }
         })();
     }, []);
+
+    async function getProducts() {
+        try {
+            setProducts(await ShopService.getProducts(brandIdSelected, typeIdSelected));
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function getBrands() {
+        try {
+            setBrands([{ id: 0, name: "All" }, ...await ShopService.getBrands()]);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function getTypes() {
+        try {
+            setTypes([{ id: 0, name: "All" }, ...await ShopService.getTypes()]);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    const onBrandSelected = (id: number) => {
+        brandIdSelected = id;
+        getProducts();
+    }
+
+    const onTypeSelected = (id: number) => {
+        typeIdSelected = id;
+        getProducts();
+    }
 
     return (
         <div className="container">
@@ -39,7 +85,12 @@ function Shop() {
                     <ul className="list-group my-3">
                         {
                             brands?.map((brand, index) =>
-                                <li className="list-group-item" key={index}>
+                                <li className={`list-group-item ${active == brand && 'active'}`}
+                                    key={index}
+                                    onClick={() => {
+                                        onBrandSelected(brand.id);
+                                        setActive(brand);
+                                    }}>
                                     {brand.name}
                                 </li>
                             )
@@ -49,7 +100,13 @@ function Shop() {
                     <ul className="list-group my-3">
                         {
                             types?.map((type, index) =>
-                                <li className="list-group-item" key={index}>
+                                <li className={`list-group-item ${active == type && 'active'}`}
+                                    key={index}
+                                    onClick={() => {
+                                        onTypeSelected(type.id);
+                                        getProducts();
+                                        setActive(type);
+                                    }}>
                                     {type.name}
                                 </li>
                             )
