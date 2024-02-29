@@ -1,12 +1,17 @@
 import { IBrand } from "../shared/models/brand";
 import { IPagination } from "../shared/models/pagination";
 import { IType } from "../shared/models/productType";
+import { useParams,PathParam } from 'react-router-dom';
 
 
 const ShopService = {
-    getProducts: async function (brandId?: number, typeId?: number) {
+    getProducts: async function (brandId?: number, typeId?: number, sort?: string) {
 
         let params: String = new String;
+
+        const { token_param } = useParams();
+
+        token_param;
 
         if (brandId) {
             params = params + "?brandId=" + brandId.toString();
@@ -16,8 +21,12 @@ const ShopService = {
             params = params + "?typeId=" + (typeId.toString());
         }
 
+        if (sort) {
+       //     params = params + "/sort=" + (sort.toString());
+        }
 
-        const resp = await fetch(baseUrl + '/products' + params.toString() );
+
+        const resp = await fetch(baseUrl + '/products' + params.toString());
         const response: IPagination = await resp.json();
         return response.data;
     },

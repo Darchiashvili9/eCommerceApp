@@ -5,12 +5,20 @@ import ProductItem from "./product-item";
 import { IBrand } from "../shared/models/brand";
 import { IType } from "../shared/models/productType";
 
+
 function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
     const [brands, setBrands] = useState<IBrand[]>();
     const [types, setTypes] = useState<IType[]>();
     const [typeIdSelected = 0, setTypeIdSelected] = useState<number>();
     const [brandIdSelected = 0, setbrandIdSelected] = useState<number>();
+    const [sortSelected = "name", setSortSelected] = useState<string>();
+    const sortOptions =
+        [
+            { name: "Alphabetical", value: "name" },
+            { name: "Price: Low to High", value: "pricaAsc" },
+            { name: "Price: High to Low", value: "pricaDesc" },
+        ];
 
     useEffect(() => {
         (function () {
@@ -30,7 +38,7 @@ function Shop() {
 
     async function getProducts() {
         try {
-            setProducts(await ShopService.getProducts(brandIdSelected, typeIdSelected));
+            setProducts(await ShopService.getProducts(brandIdSelected, typeIdSelected, sortSelected));
         }
         catch (error) {
             console.log(error);
@@ -55,16 +63,20 @@ function Shop() {
         }
     }
 
+
+
     return (
         <div className="container">
             <div className="row">
                 <section className="col-3">
                     <h5 className="text-warning ml-3">Sort</h5>
 
-                    <select className="custom-select mb-3">
-                        <option>Alphabetical</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
+                    <select className="custom-select mb-3" onChange={(ev) => { setSortSelected(ev.target.value) }}>
+                        {
+                            sortOptions.map((srt, index) =>
+                                <option key={index} value={srt.value}>{srt.name}</option>,
+                            )
+                        }
                     </select>
 
                     <h5 className="text-warning ml-3">Brands</h5>
