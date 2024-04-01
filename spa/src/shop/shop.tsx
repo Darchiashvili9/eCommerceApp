@@ -5,7 +5,6 @@ import ProductItem from "./product-item";
 import { IBrand } from "../shared/models/brand";
 import { IType } from "../shared/models/productType";
 
-
 function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
     const [brands, setBrands] = useState<IBrand[]>();
@@ -62,8 +61,6 @@ function Shop() {
             console.log(error);
         }
     }
-
-
 
     return (
         <div className="container">
