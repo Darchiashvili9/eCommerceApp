@@ -15,8 +15,8 @@ function Shop() {
     const sortOptions =
         [
             { name: "Alphabetical", value: "name" },
-            { name: "Price: Low to High", value: "pricaAsc" },
-            { name: "Price: High to Low", value: "pricaDesc" },
+            { name: "Price: Low to High", value: "priceAsc" },
+            { name: "Price: High to Low", value: "priceDesc" },
         ];
 
     useEffect(() => {
@@ -67,15 +67,17 @@ function Shop() {
             <div className="row">
                 <section className="col-3">
                     <h5 className="text-warning ml-3">Sort</h5>
-
-                    <select className="custom-select mb-3" onChange={(ev) => { setSortSelected(ev.target.value) }}>
+                    <select className="custom-select mb-3"
+                        onChange={(ev) => {
+                            setSortSelected(ev.target.value);
+                            getProducts();
+                        }}>
                         {
                             sortOptions.map((srt, index) =>
-                                <option key={index} value={srt.value}>{srt.name}</option>,
+                                <option key={index} value={srt.value}>{srt.name}</option>
                             )
                         }
                     </select>
-
                     <h5 className="text-warning ml-3">Brands</h5>
                     <ul className="list-group my-3">
                         {
