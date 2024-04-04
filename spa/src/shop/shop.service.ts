@@ -19,7 +19,7 @@ const ShopService = {
             params.append("sort", sort);
         }
 
-        const resp = await fetch(baseUrl +"/products?"+ params.toString());
+        const resp = await fetch(baseUrl + "/products?" + params.toString());
         const response: IPagination = await resp.json();
         return response.data;
     },
