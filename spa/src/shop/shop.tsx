@@ -28,12 +28,13 @@ function Shop() {
 
                 brandIdSelected;
                 typeIdSelected;
+                sortSelected;
             }
             catch (error) {
                 console.log(error);
             }
         })();
-    }, [brandIdSelected, typeIdSelected]);
+    }, [brandIdSelected, typeIdSelected, sortSelected]);
 
     async function getProducts() {
         try {
@@ -132,6 +133,11 @@ function Shop() {
                             }
                         </div>
                     </div>
+
+
+
+
+
                 </section>
             </div>
         </div >

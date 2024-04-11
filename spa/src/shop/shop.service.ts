@@ -1,5 +1,5 @@
 import { IBrand } from "../shared/models/brand";
-import { IPagination } from "../shared/models/pagination";
+import { IPagination } from "../shared/models/paginationModel";
 import { IType } from "../shared/models/productType";
 
 const ShopService = {
