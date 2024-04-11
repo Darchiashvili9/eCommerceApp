@@ -4,6 +4,7 @@ import ShopService from "./shop.service";
 import ProductItem from "./product-item";
 import { IBrand } from "../shared/models/brand";
 import { IType } from "../shared/models/productType";
+import Pagination from 'react-bootstrap/Pagination';
 
 function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
@@ -134,9 +135,25 @@ function Shop() {
                         </div>
                     </div>
 
+                    <div className="d-flex justify-content-center">
+                        <Pagination>
+                            <Pagination.First />
+                            <Pagination.Prev />
+                            <Pagination.Item>{1}</Pagination.Item>
+                            <Pagination.Ellipsis />
 
+                            <Pagination.Item>{10}</Pagination.Item>
+                            <Pagination.Item>{11}</Pagination.Item>
+                            <Pagination.Item active>{12}</Pagination.Item>
+                            <Pagination.Item>{13}</Pagination.Item>
+                            <Pagination.Item disabled>{14}</Pagination.Item>
 
-
+                            <Pagination.Ellipsis />
+                            <Pagination.Item>{20}</Pagination.Item>
+                            <Pagination.Next />
+                            <Pagination.Last />
+                        </Pagination>
+                    </div>
 
                 </section>
             </div>
