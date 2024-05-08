@@ -5,6 +5,9 @@ import ProductItem from "./product-item";
 import { IBrand } from "../shared/models/brand";
 import { IType } from "../shared/models/productType";
 import Pagination from 'react-bootstrap/Pagination';
+import "./shop.css";
+
+//import { ShopParams } from '../shared/models/ShopParams';
 
 function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
@@ -13,6 +16,10 @@ function Shop() {
     const [typeIdSelected = 0, setTypeIdSelected] = useState<number>();
     const [brandIdSelected = 0, setbrandIdSelected] = useState<number>();
     const [sortSelected = "name", setSortSelected] = useState<string>();
+    const [pageNumber = 1, setPageNumber] = useState<number>();
+    const [pageSize = 6, setPageSize] = useState<number>();
+    const [totalCount = 0, setTotalCount] = useState<number>();
+
     const sortOptions =
         [
             { name: "Alphabetical", value: "name" },
@@ -39,7 +46,11 @@ function Shop() {
 
     async function getProducts() {
         try {
-            setProducts(await ShopService.getProducts(brandIdSelected, typeIdSelected, sortSelected));
+            var response = await ShopService.getProducts(brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize);
+            setProducts(response.data);
+            setPageNumber(response.pageIndex);
+            setPageSize(response.pageSize);
+            setTotalCount(response.count);
         }
         catch (error) {
             console.log(error);
@@ -136,20 +147,22 @@ function Shop() {
                     </div>
 
                     <div className="d-flex justify-content-center">
-                        <Pagination>
-                            <Pagination.First />
-                            <Pagination.Prev />
-                            <Pagination.Item>{1}</Pagination.Item>
-                            <Pagination.Ellipsis />
+                        <Pagination size="sm" >
 
+                            <Pagination.First />
+
+
+                            <Pagination.Prev />
+
+
+                            <Pagination.Item>{1}</Pagination.Item>
                             <Pagination.Item>{10}</Pagination.Item>
                             <Pagination.Item>{11}</Pagination.Item>
                             <Pagination.Item active>{12}</Pagination.Item>
                             <Pagination.Item>{13}</Pagination.Item>
-                            <Pagination.Item disabled>{14}</Pagination.Item>
+                            <Pagination.Item>{totalCount}</Pagination.Item>
 
-                            <Pagination.Ellipsis />
-                            <Pagination.Item>{20}</Pagination.Item>
+
                             <Pagination.Next />
                             <Pagination.Last />
                         </Pagination>
