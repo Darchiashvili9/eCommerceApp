@@ -13,9 +13,11 @@ function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
     const [brands, setBrands] = useState<IBrand[]>();
     const [types, setTypes] = useState<IType[]>();
+
     const [typeIdSelected = 0, setTypeIdSelected] = useState<number>();
     const [brandIdSelected = 0, setbrandIdSelected] = useState<number>();
     const [sortSelected = "name", setSortSelected] = useState<string>();
+
     const [pageNumber = 1, setPageNumber] = useState<number>();
     const [pageSize = 6, setPageSize] = useState<number>();
     const [totalCount = 0, setTotalCount] = useState<number>();
@@ -37,19 +39,22 @@ function Shop() {
                 brandIdSelected;
                 typeIdSelected;
                 sortSelected;
+                pageNumber;
+                pageSize;
+                totalCount;
             }
             catch (error) {
                 console.log(error);
             }
         })();
-    }, [brandIdSelected, typeIdSelected, sortSelected]);
+    }, [brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize, totalCount]);
 
     async function getProducts() {
         try {
             var response = await ShopService.getProducts(brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize);
             setProducts(response.data);
-            setPageNumber(response.pageIndex);
-            setPageSize(response.pageSize);
+          //  setPageNumber(response.pageIndex);
+          //  setPageSize(response.pageSize);
             setTotalCount(response.count);
         }
         catch (error) {
@@ -146,22 +151,49 @@ function Shop() {
                         </div>
                     </div>
 
+
+
                     <div className="d-flex justify-content-center">
-                        <Pagination size="sm" >
+                        <Pagination size="sm">
 
                             <Pagination.First />
-
-
                             <Pagination.Prev />
 
 
-                            <Pagination.Item>{1}</Pagination.Item>
-                            <Pagination.Item>{10}</Pagination.Item>
-                            <Pagination.Item>{11}</Pagination.Item>
-                            <Pagination.Item active>{12}</Pagination.Item>
-                            <Pagination.Item>{13}</Pagination.Item>
-                            <Pagination.Item>{totalCount}</Pagination.Item>
 
+
+
+                            <Pagination.Item active key={pageNumber}
+                                onClick={(event) => {
+                                    const element = event.target as HTMLInputElement
+                                    const numb = element.value as unknown as number
+                                    setPageNumber(numb);
+                                    getProducts();
+                                }}>
+                                {pageNumber}
+                            </Pagination.Item>
+                            <Pagination.Item key={pageNumber + 1}
+                                onClick={(event) => {
+                                    const element = event.target as HTMLInputElement
+                                    var numb: number = + element.innerText;
+
+
+
+
+                                    setPageNumber(numb);
+                                    getProducts();
+                                }}>
+                                {pageNumber + 1}
+                            </Pagination.Item>
+
+
+
+
+
+
+
+
+                            <Pagination.Item >{totalCount}</Pagination.Item>
 
                             <Pagination.Next />
                             <Pagination.Last />

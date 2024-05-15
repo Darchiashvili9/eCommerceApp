@@ -3,21 +3,22 @@ import { IPagination } from "../shared/models/paginationModel";
 import { IType } from "../shared/models/productType";
 
 const ShopService = {
-    getProducts: async function (brandId?: number, typeId?: number, sort?: string, pageNumb?: number, pageSiz?: number) {
+    getProducts: async function (brandId: number, typeId: number, sort: string, pageNumb: number, pageSiz: number) {
 
         const params = new URLSearchParams(baseUrl.search);
 
-        if (brandId) {
+        if (brandId !== 0) {
             params.append("brandId", brandId.toString());
         }
 
-        if (typeId) {
+        if (typeId !== 0) {
             params.append("typeId", typeId.toString());
         }
 
-        if (sort) {
-            params.append("sort", sort);
-        }
+        params.append("sort", sort);
+        params.append("pageIndex", pageNumb.toString());
+        params.append("pageSize", pageSiz.toString());
+
 
         const resp = await fetch(baseUrl + "/products?" + params.toString());
         const response: IPagination = await resp.json();
