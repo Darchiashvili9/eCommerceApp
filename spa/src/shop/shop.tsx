@@ -6,7 +6,6 @@ import { IBrand } from "../shared/models/brand";
 import { IType } from "../shared/models/productType";
 import Pagination from 'react-bootstrap/Pagination';
 import "./shop.css";
-
 //import { ShopParams } from '../shared/models/ShopParams';
 
 function Shop() {
@@ -83,7 +82,9 @@ function Shop() {
     function getPaginationItems() {
         let active = pageNumber;
         let items = [];
-        for (let number = 1; number <= totalCount / pageSize; number++) {
+        let page = totalCount / pageSize < 1 ? 1 : totalCount / pageSize;
+
+        for (let number = 1; number <= page; number++) {
             items.push(
                 <Pagination.Item key={number} active={number === active}
                     onClick={(event) => {
@@ -92,11 +93,38 @@ function Shop() {
                         setPageNumber(numb);
                         getProducts();
                     }}>
-                    {number}
+                    {number < 2 ? 1 : number}
                 </Pagination.Item>
             );
         }
         return items;
+    }
+
+    function toBeDisplayed() {
+        if (totalCount && totalCount > 0)
+            return (
+                <div>
+                    <span >
+                        Showing
+                        <strong>
+                            <br />{(pageNumber - 1) * pageSize + 1} - {(pageNumber) * pageSize
+                                > totalCount
+                                ? totalCount
+                                : pageNumber * pageSize}
+                        </strong>
+
+                    </span>
+                    <span> of </span>
+                    <span>
+                        <strong>
+                            {totalCount}
+                        </strong>
+                    </span>
+                    <span> Results </span>
+                </div>
+            );
+        else
+            return null;
     }
 
     return (
@@ -122,6 +150,7 @@ function Shop() {
                                 <li className={`list-group-item ${brandIdSelected == brand.id && 'active'}`}
                                     key={index}
                                     onClick={() => {
+                                        setPageNumber(1);
                                         setbrandIdSelected(brand.id);
                                         getProducts();
                                     }}>
@@ -137,6 +166,7 @@ function Shop() {
                                 <li className={`list-group-item ${typeIdSelected == type.id && 'active'}`}
                                     key={index}
                                     onClick={() => {
+                                        setPageNumber(1);
                                         setTypeIdSelected(type.id);
                                         getProducts();
                                     }}>
@@ -149,8 +179,11 @@ function Shop() {
                 <section className="col-9">
                     <div className="d-flex justify-content-between align-items-center pb-2">
                         <header>
-                            <span>Showing <strong>10</strong> of <strong>16</strong> results</span>
+                            <div>
+                                {toBeDisplayed()}
+                            </div>
                         </header>
+
                         <div className="form-inline mt-2">
                             <input className="form-control mr-2" placeholder="Search" type="text" style={{ width: 300 }}></input>
                             <button className="btn btn-outline-primary my-2">Search</button>
@@ -209,6 +242,13 @@ function Shop() {
             </div>
         </div >
     );
+
+
+
+
+
+
+
 }
 
 export default Shop;
