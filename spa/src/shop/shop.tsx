@@ -53,8 +53,8 @@ function Shop() {
         try {
             var response = await ShopService.getProducts(brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize);
             setProducts(response.data);
-          //  setPageNumber(response.pageIndex);
-          //  setPageSize(response.pageSize);
+            //  setPageNumber(response.pageIndex);
+            //  setPageSize(response.pageSize);
             setTotalCount(response.count);
         }
         catch (error) {
@@ -78,6 +78,25 @@ function Shop() {
         catch (error) {
             console.log(error);
         }
+    }
+
+    function getPaginationItems() {
+        let active = pageNumber;
+        let items = [];
+        for (let number = 1; number <= totalCount / pageSize; number++) {
+            items.push(
+                <Pagination.Item key={number} active={number === active}
+                    onClick={(event) => {
+                        const element = event.target as HTMLInputElement
+                        var numb: number = + element.innerText;
+                        setPageNumber(numb);
+                        getProducts();
+                    }}>
+                    {number}
+                </Pagination.Item>
+            );
+        }
+        return items;
     }
 
     return (
@@ -151,52 +170,38 @@ function Shop() {
                         </div>
                     </div>
 
-
-
                     <div className="d-flex justify-content-center">
                         <Pagination size="sm">
-
-                            <Pagination.First />
-                            <Pagination.Prev />
-
-
-
-
-
-                            <Pagination.Item active key={pageNumber}
-                                onClick={(event) => {
-                                    const element = event.target as HTMLInputElement
-                                    const numb = element.value as unknown as number
-                                    setPageNumber(numb);
+                            <Pagination.First key={1}
+                                onClick={() => {
+                                    setPageNumber(1);
                                     getProducts();
                                 }}>
-                                {pageNumber}
-                            </Pagination.Item>
-                            <Pagination.Item key={pageNumber + 1}
-                                onClick={(event) => {
-                                    const element = event.target as HTMLInputElement
-                                    var numb: number = + element.innerText;
+                            </Pagination.First>
 
-
-
-
-                                    setPageNumber(numb);
+                            <Pagination.Prev key={pageNumber > 1 ? pageNumber - 1 : 1}
+                                onClick={() => {
+                                    setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1);
                                     getProducts();
                                 }}>
-                                {pageNumber + 1}
-                            </Pagination.Item>
+                            </Pagination.Prev>
 
+                            {getPaginationItems()}
+                            {/*<Pagination.Ellipsis />*/}
 
+                            <Pagination.Next key={pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize}
+                                onClick={() => {
+                                    setPageNumber(pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize);
+                                    getProducts();
+                                }}>
+                            </Pagination.Next>
 
-
-
-
-
-
-                            <Pagination.Item >{totalCount}</Pagination.Item>
-
-                            <Pagination.Next />
-                            <Pagination.Last />
+                            <Pagination.Last key={999}
+                                onClick={() => {
+                                    setPageNumber(totalCount / pageSize);
+                                    getProducts();
+                                }}>
+                            </Pagination.Last>
                         </Pagination>
                     </div>
 
