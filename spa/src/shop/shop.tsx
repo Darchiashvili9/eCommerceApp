@@ -100,33 +100,6 @@ function Shop() {
         return items;
     }
 
-    function toBeDisplayed() {
-        if (totalCount && totalCount > 0)
-            return (
-                <div>
-                    <span >
-                        Showing
-                        <strong>
-                            <br />{(pageNumber - 1) * pageSize + 1} - {(pageNumber) * pageSize
-                                > totalCount
-                                ? totalCount
-                                : pageNumber * pageSize}
-                        </strong>
-
-                    </span>
-                    <span> of </span>
-                    <span>
-                        <strong>
-                            {totalCount}
-                        </strong>
-                    </span>
-                    <span> Results </span>
-                </div>
-            );
-        else
-            return null;
-    }
-
     return (
         <div className="container">
             <div className="row">
@@ -179,9 +152,32 @@ function Shop() {
                 <section className="col-9">
                     <div className="d-flex justify-content-between align-items-center pb-2">
                         <header>
-                            <div>
-                                {toBeDisplayed()}
-                            </div>
+                                {totalCount && totalCount > 0 ?
+                                        <div>
+                                            <span >
+                                                Showing
+                                                <strong>
+                                                    <br />{(pageNumber - 1) * pageSize + 1} - {(pageNumber) * pageSize
+                                                        > totalCount
+                                                        ? totalCount
+                                                        : pageNumber * pageSize}
+                                                </strong>
+                                            </span>
+                                            <span> of </span>
+                                            <span>
+                                                <strong>
+                                                    {totalCount}
+                                                </strong>
+                                            </span>
+                                            <span> Results </span>
+                                        </div>
+                                    :
+                                        <div>
+                                            <span>
+                                                There are <strong> 0 </strong> results for this.
+                                            </span>
+                                        </div>
+                                }
                         </header>
 
                         <div className="form-inline mt-2">
@@ -203,41 +199,44 @@ function Shop() {
                         </div>
                     </div>
 
-                    <div className="d-flex justify-content-center">
-                        <Pagination size="sm">
-                            <Pagination.First key={1}
-                                onClick={() => {
-                                    setPageNumber(1);
-                                    getProducts();
-                                }}>
-                            </Pagination.First>
+                    {totalCount > 0 ?
+                        <div className="d-flex justify-content-center">
+                            <Pagination size="sm">
+                                <Pagination.First key={1}
+                                    onClick={() => {
+                                        setPageNumber(1);
+                                        getProducts();
+                                    }}>
+                                </Pagination.First>
 
-                            <Pagination.Prev key={pageNumber > 1 ? pageNumber - 1 : 1}
-                                onClick={() => {
-                                    setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1);
-                                    getProducts();
-                                }}>
-                            </Pagination.Prev>
+                                <Pagination.Prev key={pageNumber > 1 ? pageNumber - 1 : 1}
+                                    onClick={() => {
+                                        setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1);
+                                        getProducts();
+                                    }}>
+                                </Pagination.Prev>
 
-                            {getPaginationItems()}
-                            {/*<Pagination.Ellipsis />*/}
+                                {getPaginationItems()}
+                                {/*<Pagination.Ellipsis />*/}
 
-                            <Pagination.Next key={pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize}
-                                onClick={() => {
-                                    setPageNumber(pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize);
-                                    getProducts();
-                                }}>
-                            </Pagination.Next>
+                                <Pagination.Next key={pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize}
+                                    onClick={() => {
+                                        setPageNumber(pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize);
+                                        getProducts();
+                                    }}>
+                                </Pagination.Next>
 
-                            <Pagination.Last key={999}
-                                onClick={() => {
-                                    setPageNumber(totalCount / pageSize);
-                                    getProducts();
-                                }}>
-                            </Pagination.Last>
-                        </Pagination>
-                    </div>
-
+                                <Pagination.Last key={999}
+                                    onClick={() => {
+                                        setPageNumber(totalCount / pageSize);
+                                        getProducts();
+                                    }}>
+                                </Pagination.Last>
+                            </Pagination>
+                        </div>
+                        :
+                        <div></div>
+                    }
                 </section>
             </div>
         </div >
