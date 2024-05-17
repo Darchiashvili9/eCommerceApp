@@ -6,6 +6,7 @@ import { IBrand } from "../shared/models/brand";
 import { IType } from "../shared/models/productType";
 import Pagination from 'react-bootstrap/Pagination';
 import "./shop.css";
+import PaginationModule from "./paginationModule";
 //import { ShopParams } from '../shared/models/ShopParams';
 
 function Shop() {
@@ -187,6 +188,7 @@ function Shop() {
 
                         </div>
                     </div>
+
                     <div>
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                             {
@@ -199,44 +201,49 @@ function Shop() {
                         </div>
                     </div>
 
-                    {totalCount > 0 ?
-                        <div className="d-flex justify-content-center">
-                            <Pagination size="sm">
-                                <Pagination.First key={1}
-                                    onClick={() => {
-                                        setPageNumber(1);
-                                        getProducts();
-                                    }}>
-                                </Pagination.First>
+                    <div>
+                        <PaginationModule totalcount={totalCount} pageNumber={pageNumber} pageSize={pageSize} />
+                    </div>
 
-                                <Pagination.Prev key={pageNumber > 1 ? pageNumber - 1 : 1}
-                                    onClick={() => {
-                                        setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1);
-                                        getProducts();
-                                    }}>
-                                </Pagination.Prev>
 
-                                {getPaginationItems()}
-                                {/*<Pagination.Ellipsis />*/}
+                    {/*{totalCount > 0 ?*/}
+                    {/*    <div className="d-flex justify-content-center">*/}
+                    {/*        <Pagination size="sm">*/}
+                    {/*            <Pagination.First key={1}*/}
+                    {/*                onClick={() => {*/}
+                    {/*                    setPageNumber(1);*/}
+                    {/*                    getProducts();*/}
+                    {/*                }}>*/}
+                    {/*            </Pagination.First>*/}
 
-                                <Pagination.Next key={pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize}
-                                    onClick={() => {
-                                        setPageNumber(pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize);
-                                        getProducts();
-                                    }}>
-                                </Pagination.Next>
+                    {/*            <Pagination.Prev key={pageNumber > 1 ? pageNumber - 1 : 1}*/}
+                    {/*                onClick={() => {*/}
+                    {/*                    setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1);*/}
+                    {/*                    getProducts();*/}
+                    {/*                }}>*/}
+                    {/*            </Pagination.Prev>*/}
 
-                                <Pagination.Last key={999}
-                                    onClick={() => {
-                                        setPageNumber(totalCount / pageSize);
-                                        getProducts();
-                                    }}>
-                                </Pagination.Last>
-                            </Pagination>
-                        </div>
-                        :
-                        <div></div>
-                    }
+                    {/*            {getPaginationItems()}*/}
+                    {/*            */}{/*<Pagination.Ellipsis />*/}
+
+                    {/*            <Pagination.Next key={pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize}*/}
+                    {/*                onClick={() => {*/}
+                    {/*                    setPageNumber(pageNumber < totalCount / pageSize ? pageNumber + 1 : totalCount / pageSize);*/}
+                    {/*                    getProducts();*/}
+                    {/*                }}>*/}
+                    {/*            </Pagination.Next>*/}
+
+                    {/*            <Pagination.Last key={999}*/}
+                    {/*                onClick={() => {*/}
+                    {/*                    setPageNumber(totalCount / pageSize);*/}
+                    {/*                    getProducts();*/}
+                    {/*                }}>*/}
+                    {/*            </Pagination.Last>*/}
+                    {/*        </Pagination>*/}
+                    {/*    </div>*/}
+                    {/*    :*/}
+                    {/*    <div></div>*/}
+                    {/*}*/}
                 </section>
             </div>
         </div >
