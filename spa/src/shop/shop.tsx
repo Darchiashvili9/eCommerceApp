@@ -18,7 +18,7 @@ function Shop() {
     const [sortSelected = "name", setSortSelected] = useState<string>();
 
     const [pageNumber = 1, setPageNumber] = useState<number>();
-    const [pageSize = 6, setPageSize] = useState<number>();
+    const [pageSize = 6, ] = useState<number>();
     const [totalCount = 0, setTotalCount] = useState<number>();
 
     useEffect(() => {

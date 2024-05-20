@@ -1,7 +1,7 @@
 import Pagination from 'react-bootstrap/Pagination';
 
-function PaginationModule({ totalcount, pageNumber, pageSize, setPageNumb, getProd }:
-    { totalcount: number, pageNumber: number, pageSize: number, setPageNumb: Function, getProd: Function }) {
+function PaginationModule({ totalcount, pageNumber, pageSize, setPageNumb, getProd }
+    : { totalcount: number, pageNumber: number, pageSize: number, setPageNumb: Function, getProd: Function }) {
 
     const getPaginationItems = () => {
         let active = pageNumber;

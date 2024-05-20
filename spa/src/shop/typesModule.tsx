@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { IType } from "../shared/models/productType";
 import ShopService from "./shop.service";
 
-function TypesModule({ typeIdSelected, setPageNumber, setTypeIdSelected, getProducts }:
-    { typeIdSelected: number, setPageNumber: Function, setTypeIdSelected: Function, getProducts: Function }) {
+function TypesModule({ typeIdSelected, setPageNumber, setTypeIdSelected, getProducts }
+    : { typeIdSelected: number, setPageNumber: Function, setTypeIdSelected: Function, getProducts: Function }) {
+
     const [types, setTypes] = useState<IType[]>();
 
     useEffect(() => {

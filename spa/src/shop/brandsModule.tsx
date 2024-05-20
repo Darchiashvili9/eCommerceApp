@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { IBrand } from "../shared/models/brand";
 import ShopService from "./shop.service";
 
-function BrandsModule({ brandIdSelected, setPageNumber, setbrandIdSelected, getProducts }:
-    { brandIdSelected: number, setPageNumber: Function, setbrandIdSelected: Function, getProducts: Function }) {
+function BrandsModule({ brandIdSelected, setPageNumber, setbrandIdSelected, getProducts }
+    : { brandIdSelected: number, setPageNumber: Function, setbrandIdSelected: Function, getProducts: Function }) {
 
     const [brands, setBrands] = useState<IBrand[]>();
 
