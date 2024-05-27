@@ -6,7 +6,7 @@ import PaginationModule from "../shared/modules/paginationModule";
 import BrandsModule from "./brandsModule";
 import TypesModule from "./typesModule";
 import SortModule from "./sortModule";
-import SearchModule from "./searchModule";
+import SearchModule from "../shared/modules/searchModule";
 import ProductsModule from "./productsModule";
 import PagingHeaderModule from "../shared/modules/pagingHeaderModule";
 
@@ -17,8 +17,10 @@ function Shop() {
     const [brandIdSelected = 0, setbrandIdSelected] = useState<number>();
     const [sortSelected = "name", setSortSelected] = useState<string>();
 
+    const [search = '', setSearch] = useState<string>();
+
     const [pageNumber = 1, setPageNumber] = useState<number>();
-    const [pageSize = 6, ] = useState<number>();
+    const [pageSize = 6,] = useState<number>();
     const [totalCount = 0, setTotalCount] = useState<number>();
 
     useEffect(() => {
@@ -32,12 +34,13 @@ function Shop() {
                 pageNumber;
                 pageSize;
                 totalCount;
+                search;
             }
             catch (error) {
                 console.log(error);
             }
         })();
-    }, [brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize, totalCount]);
+    }, [brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize, totalCount, search]);
 
     const getProducts = async () => {
         try {
@@ -80,12 +83,12 @@ function Shop() {
                         </div>
 
                         <div className="form-inline mt-2">
-                            <SearchModule/>
+                            <SearchModule setSearch={setSearch} />
                         </div>
                     </div>
 
                     <div>
-                            <ProductsModule prods={products} />
+                        <ProductsModule prods={products} />
                     </div>
 
                     <div>

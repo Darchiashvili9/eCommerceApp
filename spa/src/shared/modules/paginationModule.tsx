@@ -29,7 +29,7 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setPageNumb, getPr
             {totalcount > 0 ?
                 <div className="d-flex justify-content-center">
                     <Pagination size="sm">
-                        <Pagination.First key={1}
+                        <Pagination.First key={0}
                             onClick={() => {
                                 setPageNumb(1);
                                 getProd();

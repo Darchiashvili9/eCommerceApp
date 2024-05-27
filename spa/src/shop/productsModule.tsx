@@ -19,8 +19,8 @@ function ProductsModule({ prods }: { prods: IProduct[] | undefined }) {
     return (
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {
-                prods?.map((prod) =>
-                    <div className="col-4 mb-4">
+                prods?.map((prod, index) =>
+                    <div className="col-4 mb-4" key={index}>
                         <Card className="card h-100 shadow-sm">
                             <CardImg className="card-img-top img-fluid bg-info" role="img" src={prod.pictureUrl} style={{ maxHeight: "300px" }} />
                             <Card.Body className="d-flex flex-column">
