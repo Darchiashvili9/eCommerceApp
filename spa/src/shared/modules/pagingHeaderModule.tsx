@@ -1,5 +1,5 @@
 
-function ItemsPerPageShowing({ totalCount, pageNumber, pageSize }
+function PagingHeaderModule({ totalCount, pageNumber, pageSize }
     : { totalCount: number, pageNumber: number, pageSize: number }) {
 
     return (
@@ -9,8 +9,9 @@ function ItemsPerPageShowing({ totalCount, pageNumber, pageSize }
                     <span >
                         Showing
                         <strong>
-                            <br />{(pageNumber - 1) * pageSize + 1} - {(pageNumber) * pageSize
-                                > totalCount
+                            <br />
+                            {(pageNumber - 1) * pageSize + 1} -
+                            {pageNumber * pageSize > totalCount
                                 ? totalCount
                                 : pageNumber * pageSize}
                         </strong>
@@ -33,4 +34,4 @@ function ItemsPerPageShowing({ totalCount, pageNumber, pageSize }
         </header>
     );
 }
-export default ItemsPerPageShowing;
+export default PagingHeaderModule;

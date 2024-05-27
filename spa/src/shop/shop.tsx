@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { IProduct } from '../shared/models/products';
 import ShopService from "./shop.service";
 import "./shop.css";
-import PaginationModule from "./paginationModule";
+import PaginationModule from "../shared/modules/paginationModule";
 import BrandsModule from "./brandsModule";
 import TypesModule from "./typesModule";
 import SortModule from "./sortModule";
-import ItemsPerPageShowing from "./itemsPerPageShowing";
 import SearchModule from "./searchModule";
 import ProductsModule from "./productsModule";
+import PagingHeaderModule from "../shared/modules/pagingHeaderModule";
 
 function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
@@ -76,7 +76,7 @@ function Shop() {
                 <section className="col-9">
                     <div className="d-flex justify-content-between align-items-center pb-2">
                         <div>
-                            <ItemsPerPageShowing totalCount={totalCount} pageNumber={pageNumber} pageSize={pageSize} />
+                            <PagingHeaderModule totalCount={totalCount} pageNumber={pageNumber} pageSize={pageSize} />
                         </div>
 
                         <div className="form-inline mt-2">
