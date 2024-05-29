@@ -54,40 +54,66 @@ function Shop() {
 
                     <h5 className="text-warning ml-3">Sort</h5>
                     <div>
-                        <SortModule setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
+                        <SortModule
+                            setShopParamsSelected={setShopParamsSelected}
+                            getProducts={getProducts}>
+                        </SortModule>
                     </div>
 
                     <h5 className="text-warning ml-3">Brands</h5>
                     <div>
-                        <BrandsModule brandIdSelected={shopParamsSelected.brandId}
-                            setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
+                        <BrandsModule
+                            brandIdSelected={shopParamsSelected.brandId}
+                            setShopParamsSelected={setShopParamsSelected}
+                            getProducts={getProducts}>
+                        </BrandsModule>
                     </div>
 
                     <h5 className="text-warning ml-3">Types</h5>
                     <div>
-                        <TypesModule typeIdSelected={shopParamsSelected.typeId}
-                            setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
+                        <TypesModule
+                            typeIdSelected={shopParamsSelected.typeId}
+                            setShopParamsSelected={setShopParamsSelected}
+                            getProducts={getProducts}>
+                        </TypesModule>
                     </div>
 
                 </section>
+
                 <section className="col-9">
                     <div className="d-flex justify-content-between align-items-center pb-2">
+
                         <div>
-                            <PagingHeaderModule totalCount={totalCount} pageNumber={shopParamsSelected.pageNumb} pageSize={shopParamsSelected.pageSiz} />
+                            <PagingHeaderModule
+                                totalCount={totalCount}
+                                pageNumber={shopParamsSelected.pageNumb}
+                                pageSize={shopParamsSelected.pageSiz}>
+                            </PagingHeaderModule>
                         </div>
 
                         <div className="form-inline mt-2">
-                            <SearchModule setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
+                            <SearchModule
+                                setShopParamsSelected={setShopParamsSelected}
+                                getProducts={getProducts}>
+                            </SearchModule>
                         </div>
+
                     </div>
 
                     <div>
-                        <ProductsModule prods={products} />
+                        <ProductsModule
+                            prods={products}>
+                        </ProductsModule>
                     </div>
 
                     <div>
-                        <PaginationModule totalcount={totalCount} pageNumber={shopParamsSelected.pageNumb} pageSize={shopParamsSelected.pageSiz}
-                            setShopParamsSelected={setShopParamsSelected} getProd={getProducts} />
+                        <PaginationModule
+                            totalcount={totalCount}
+                            pageNumber={shopParamsSelected.pageNumb}
+                            pageSize={shopParamsSelected.pageSiz}
+                            setShopParamsSelected={setShopParamsSelected}
+                            getProd={getProducts}>
+                        </PaginationModule>
                     </div>
                 </section>
             </div>
