@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IType } from "../shared/models/productType";
-import ShopService from "./shop.service";
+import ShopService from "../shared/services/shop.service";
 
 function TypesModule({ typeIdSelected, setPageNumber, setTypeIdSelected, getProducts }
     : { typeIdSelected: number, setPageNumber: Function, setTypeIdSelected: Function, getProducts: Function }) {

@@ -1,10 +1,14 @@
+import { useState } from "react";
 
-function SearchModule({ setSearch }: { setSearch: Function }) {
+function SearchModule({ setSearch, getProducts }: { setSearch: Function, getProducts: Function }) {
 
-    const onSearch = (event: any) => {
-        setSearch(event.target.value);
-        
-        console.log('Value is:', event.target.value);
+    const [message, setMessage] = useState('');
+
+    const onSearch = () => {
+        setSearch(message);
+        getProducts();
+
+        console.log('Value is:', message);
     };
 
     const onReset = (event: any) => {
@@ -14,10 +18,11 @@ function SearchModule({ setSearch }: { setSearch: Function }) {
 
     return (
         <div>
-
             <input className="form-control mr-2" placeholder="Search" type="text" style={{ width: 300 }}
-                onChange={onSearch}>
-            </input>
+                onChange={(ev) => {
+                    setMessage(ev.target.value);
+                }}
+                value={message} />
 
             <button className="btn btn-outline-primary my-2"
                 onClick={onSearch}>
@@ -28,7 +33,6 @@ function SearchModule({ setSearch }: { setSearch: Function }) {
                 onClick={onReset}>
                 Reset
             </button>
-
         </div >
     );
 }

@@ -1,6 +1,6 @@
-import { IBrand } from "../shared/models/brand";
-import { IPagination } from "../shared/models/paginationModel";
-import { IType } from "../shared/models/productType";
+import { IBrand } from "../models/brand";
+import { IPagination } from "../models/paginationModel";
+import { IType } from "../models/productType";
 
 const ShopService = {
 

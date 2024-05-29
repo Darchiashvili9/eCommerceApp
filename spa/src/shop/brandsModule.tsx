@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IBrand } from "../shared/models/brand";
-import ShopService from "./shop.service";
+import ShopService from "../shared/services/shop.service";
 
 function BrandsModule({ brandIdSelected, setPageNumber, setbrandIdSelected, getProducts }
     : { brandIdSelected: number, setPageNumber: Function, setbrandIdSelected: Function, getProducts: Function }) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { IProduct } from '../shared/models/products';
-import ShopService from "./shop.service";
+import ShopService from "../shared/services/shop.service";
 import "./shop.css";
 import PaginationModule from "../shared/modules/paginationModule";
 import BrandsModule from "./brandsModule";
@@ -83,7 +83,7 @@ function Shop() {
                         </div>
 
                         <div className="form-inline mt-2">
-                            <SearchModule setSearch={setSearch} />
+                            <SearchModule setSearch={setSearch} getProducts={getProducts} />
                         </div>
                     </div>
 
