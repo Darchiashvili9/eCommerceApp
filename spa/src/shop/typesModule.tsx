@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { IType } from "../shared/models/productType";
 import ShopService from "../shared/services/shop.service";
 
-function TypesModule({ typeIdSelected, setPageNumber, setTypeIdSelected, getProducts }
-    : { typeIdSelected: number, setPageNumber: Function, setTypeIdSelected: Function, getProducts: Function }) {
+function TypesModule({ typeIdSelected, setShopParamsSelected, getProducts }
+    : { typeIdSelected: number, setShopParamsSelected: Function, getProducts: Function }) {
 
     const [types, setTypes] = useState<IType[]>();
 
@@ -34,8 +34,7 @@ function TypesModule({ typeIdSelected, setPageNumber, setTypeIdSelected, getProd
                     <li className={`list-group-item ${typeIdSelected == type.id && 'active'}`}
                         key={index}
                         onClick={() => {
-                            setPageNumber(1);
-                            setTypeIdSelected(type.id);
+                            setShopParamsSelected((item: any) => ({ ...item, typeId: type.id, pageNumb: 1 }));
                             getProducts();
                         }}>
                         {type.name}

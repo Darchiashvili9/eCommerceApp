@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { IBrand } from "../shared/models/brand";
 import ShopService from "../shared/services/shop.service";
 
-function BrandsModule({ brandIdSelected, setPageNumber, setbrandIdSelected, getProducts }
-    : { brandIdSelected: number, setPageNumber: Function, setbrandIdSelected: Function, getProducts: Function }) {
+function BrandsModule({ brandIdSelected, setShopParamsSelected, getProducts }
+    : { brandIdSelected: number, setShopParamsSelected: Function, getProducts: Function }) {
 
     const [brands, setBrands] = useState<IBrand[]>();
 
@@ -34,8 +34,7 @@ function BrandsModule({ brandIdSelected, setPageNumber, setbrandIdSelected, getP
                     <li className={`list-group-item ${brandIdSelected == brand.id && 'active'}`}
                         key={index}
                         onClick={() => {
-                            setPageNumber(1);
-                            setbrandIdSelected(brand.id);
+                            setShopParamsSelected((item: any) => ({ ...item, brandId: brand.id, pageNumb: 1 }));
                             getProducts();
                         }}>
                         {brand.name}

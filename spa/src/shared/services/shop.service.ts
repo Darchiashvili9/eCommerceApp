@@ -1,24 +1,27 @@
 import { IBrand } from "../models/brand";
 import { IPagination } from "../models/paginationModel";
 import { IType } from "../models/productType";
+import { ShopParams } from "../models/shopParams";
 
 const ShopService = {
 
-    getProducts: async (brandId: number, typeId: number, sort: string, pageNumb: number, pageSiz: number) => {
+    getProducts: async (shopParams: ShopParams) => {
+
+        console.log(shopParams)
 
         const params = new URLSearchParams(baseUrl.search);
 
-        if (brandId !== 0) {
-            params.append("brandId", brandId.toString());
+        if (shopParams.brandId !== 0) {
+            params.append("brandId", shopParams.brandId.toString());
         }
 
-        if (typeId !== 0) {
-            params.append("typeId", typeId.toString());
+        if (shopParams.typeId !== 0) {
+            params.append("typeId", shopParams.typeId.toString());
         }
 
-        params.append("sort", sort);
-        params.append("pageIndex", pageNumb.toString());
-        params.append("pageSize", pageSiz.toString());
+        params.append("sort", shopParams.sort);
+        params.append("pageIndex", shopParams.pageNumb.toString());
+        params.append("pageSize", shopParams.pageSiz.toString());
 
 
         const resp = await fetch(baseUrl + "/products?" + params.toString());

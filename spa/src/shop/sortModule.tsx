@@ -1,5 +1,5 @@
 
-function SortModule({ setSortSelected, getProducts }: { setSortSelected: Function, getProducts: Function }) {
+function SortModule({ setShopParamsSelected, getProducts }: { setShopParamsSelected: Function, getProducts: Function }) {
 
     const sortOptions =
         [
@@ -11,7 +11,7 @@ function SortModule({ setSortSelected, getProducts }: { setSortSelected: Functio
     return (
         <select className="custom-select mb-3"
             onChange={(ev) => {
-                setSortSelected(ev.target.value);
+                setShopParamsSelected((item: any) => ({ ...item, sort: ev.target.value }));
                 getProducts();
             }}>
             {

@@ -9,42 +9,36 @@ import SortModule from "./sortModule";
 import SearchModule from "../shared/modules/searchModule";
 import ProductsModule from "./productsModule";
 import PagingHeaderModule from "../shared/modules/pagingHeaderModule";
+import { ShopParams } from "../shared/models/shopParams";
 
 function Shop() {
     const [products, setProducts] = useState<IProduct[]>();
-
-    const [typeIdSelected = 0, setTypeIdSelected] = useState<number>();
-    const [brandIdSelected = 0, setbrandIdSelected] = useState<number>();
-    const [sortSelected = "name", setSortSelected] = useState<string>();
-
-    const [search = '', setSearch] = useState<string>();
-
-    const [pageNumber = 1, setPageNumber] = useState<number>();
-    const [pageSize = 6,] = useState<number>();
     const [totalCount = 0, setTotalCount] = useState<number>();
+
+    const [shopParamsSelected, setShopParamsSelected] = useState<ShopParams>({
+        brandId: 0,
+        typeId: 0,
+        sort: 'name',
+        pageNumb: 1,
+        pageSiz: 6,
+        search: ''
+    });
 
     useEffect(() => {
         (function () {
             try {
                 getProducts();
-
-                brandIdSelected;
-                typeIdSelected;
-                sortSelected;
-                pageNumber;
-                pageSize;
-                totalCount;
-                search;
+                shopParamsSelected
             }
             catch (error) {
                 console.log(error);
             }
         })();
-    }, [brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize, totalCount, search]);
+    }, [shopParamsSelected, totalCount]);
 
     const getProducts = async () => {
         try {
-            var response = await ShopService.getProducts(brandIdSelected, typeIdSelected, sortSelected, pageNumber, pageSize);
+            var response = await ShopService.getProducts(shopParamsSelected);
             setProducts(response.data);
             setTotalCount(response.count);
         }
@@ -60,30 +54,30 @@ function Shop() {
 
                     <h5 className="text-warning ml-3">Sort</h5>
                     <div>
-                        <SortModule setSortSelected={setSortSelected} getProducts={getProducts} />
+                        <SortModule setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
                     </div>
 
                     <h5 className="text-warning ml-3">Brands</h5>
                     <div>
-                        <BrandsModule brandIdSelected={brandIdSelected} setPageNumber={setPageNumber}
-                            setbrandIdSelected={setbrandIdSelected} getProducts={getProducts} />
+                        <BrandsModule brandIdSelected={shopParamsSelected.brandId}
+                            setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
                     </div>
 
                     <h5 className="text-warning ml-3">Types</h5>
                     <div>
-                        <TypesModule typeIdSelected={typeIdSelected} setPageNumber={setPageNumber}
-                            setTypeIdSelected={setTypeIdSelected} getProducts={getProducts} />
+                        <TypesModule typeIdSelected={shopParamsSelected.typeId}
+                            setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
                     </div>
 
                 </section>
                 <section className="col-9">
                     <div className="d-flex justify-content-between align-items-center pb-2">
                         <div>
-                            <PagingHeaderModule totalCount={totalCount} pageNumber={pageNumber} pageSize={pageSize} />
+                            <PagingHeaderModule totalCount={totalCount} pageNumber={shopParamsSelected.pageNumb} pageSize={shopParamsSelected.pageSiz} />
                         </div>
 
                         <div className="form-inline mt-2">
-                            <SearchModule setSearch={setSearch} getProducts={getProducts} />
+                            <SearchModule setShopParamsSelected={setShopParamsSelected} getProducts={getProducts} />
                         </div>
                     </div>
 
@@ -92,8 +86,8 @@ function Shop() {
                     </div>
 
                     <div>
-                        <PaginationModule totalcount={totalCount} pageNumber={pageNumber} pageSize={pageSize}
-                            setPageNumb={setPageNumber} getProd={getProducts} />
+                        <PaginationModule totalcount={totalCount} pageNumber={shopParamsSelected.pageNumb} pageSize={shopParamsSelected.pageSiz}
+                            setShopParamsSelected={setShopParamsSelected} getProd={getProducts} />
                     </div>
                 </section>
             </div>

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-function SearchModule({ setSearch, getProducts }: { setSearch: Function, getProducts: Function }) {
+function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSelected: Function, getProducts: Function }) {
 
     const [message, setMessage] = useState('');
 
     const onSearch = () => {
-        setSearch(message);
+        setShopParamsSelected(message);
         getProducts();
 
         console.log('Value is:', message);
@@ -13,7 +13,7 @@ function SearchModule({ setSearch, getProducts }: { setSearch: Function, getProd
 
     const onReset = (event: any) => {
         event.target.value = undefined;
-        setSearch("");
+        setShopParamsSelected("");
     };
 
     return (

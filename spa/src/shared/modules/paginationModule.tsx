@@ -1,7 +1,7 @@
 import Pagination from 'react-bootstrap/Pagination';
 
-function PaginationModule({ totalcount, pageNumber, pageSize, setPageNumb, getProd }
-    : { totalcount: number, pageNumber: number, pageSize: number, setPageNumb: Function, getProd: Function }) {
+function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelected, getProd }
+    : { totalcount: number, pageNumber: number, pageSize: number, setShopParamsSelected: Function, getProd: Function }) {
 
     const getPaginationItems = () => {
         let active = pageNumber;
@@ -14,7 +14,7 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setPageNumb, getPr
                     onClick={(event) => {
                         const element = event.target as HTMLInputElement
                         var numb: number = + element.innerText;
-                        setPageNumb(numb);
+                        setShopParamsSelected((item: any) => ({ ...item, pageNumb: numb }));
                         getProd();
                     }}>
                     {number < 2 ? 1 : number}
@@ -31,14 +31,14 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setPageNumb, getPr
                     <Pagination size="sm">
                         <Pagination.First key={0}
                             onClick={() => {
-                                setPageNumb(1);
+                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: 1 }));
                                 getProd();
                             }}>
                         </Pagination.First>
 
                         <Pagination.Prev key={pageNumber > 1 ? pageNumber - 1 : 1}
                             onClick={() => {
-                                setPageNumb(pageNumber > 1 ? pageNumber - 1 : 1);
+                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: pageNumber > 1 ? pageNumber - 1 : 1 }));
                                 getProd();
                             }}>
                         </Pagination.Prev>
@@ -47,14 +47,14 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setPageNumb, getPr
 
                         <Pagination.Next key={pageNumber < totalcount / pageSize ? pageNumber + 1 : totalcount / pageSize}
                             onClick={() => {
-                                setPageNumb(pageNumber < totalcount / pageSize ? pageNumber + 1 : totalcount / pageSize);
+                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: pageNumber < totalcount / pageSize ? pageNumber + 1 : totalcount / pageSize }));
                                 getProd();
                             }}>
                         </Pagination.Next>
 
                         <Pagination.Last key={999}
                             onClick={() => {
-                                setPageNumb(totalcount / pageSize);
+                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: totalcount / pageSize }));
                                 getProd();
                             }}>
                         </Pagination.Last>
