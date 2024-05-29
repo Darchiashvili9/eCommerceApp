@@ -47,14 +47,14 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
 
                         <Pagination.Next key={pageNumber < totalcount / pageSize ? pageNumber + 1 : totalcount / pageSize}
                             onClick={() => {
-                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: pageNumber < totalcount / pageSize ? pageNumber + 1 : totalcount / pageSize }));
+                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: pageNumber < totalcount / pageSize ? pageNumber + 1 : Math.round(totalcount / pageSize) }));
                                 getProd();
                             }}>
                         </Pagination.Next>
 
                         <Pagination.Last key={999}
                             onClick={() => {
-                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: totalcount / pageSize }));
+                                setShopParamsSelected((item: any) => ({ ...item, pageNumb: Math.round(totalcount / pageSize) }));
                                 getProd();
                             }}>
                         </Pagination.Last>

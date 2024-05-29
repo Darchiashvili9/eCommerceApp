@@ -5,7 +5,7 @@ function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSel
     const [message, setMessage] = useState('');
 
     const onSearch = () => {
-        setShopParamsSelected(message);
+        setShopParamsSelected((item: any) => ({ ...item, search: message }));
         getProducts();
 
         console.log('Value is:', message);
@@ -13,7 +13,7 @@ function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSel
 
     const onReset = (event: any) => {
         event.target.value = undefined;
-        setShopParamsSelected("");
+        setShopParamsSelected((item: any) => ({ ...item, search: "" }));
     };
 
     return (
