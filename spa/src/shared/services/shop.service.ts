@@ -19,6 +19,10 @@ const ShopService = {
             params.append("typeId", shopParams.typeId.toString());
         }
 
+        if (shopParams.search) {
+            params.append("search", shopParams.search.toString());
+        }
+
         params.append("sort", shopParams.sort);
         params.append("pageIndex", shopParams.pageNumb.toString());
         params.append("pageSize", shopParams.pageSiz.toString());

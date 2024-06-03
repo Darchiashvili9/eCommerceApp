@@ -51,11 +51,20 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
 
                         {getPaginationItems()}
 
-                        <Pagination.Next key={pageNumber < totalcount / pageSize ? pageNumber + 1 : totalcount / pageSize}
+                        <Pagination.Next key={pageNumber < totalcount / pageSize ? Math.random() : totalcount / pageSize}
                             onClick={() => {
+                                let pageInd: number;
+                                if (pageNumber < totalcount / pageSize) {
+
+                                    pageInd = pageNumber + 1;
+                                }
+                                else {
+                                    pageInd = Math.round(totalcount / pageSize) == 0 ? 1 : Math.round(totalcount / pageSize)
+                                }
+
                                 setShopParamsSelected((item: any) => ({
                                     ...item,
-                                    pageNumb: pageNumber < totalcount / pageSize ? pageNumber + 1 : Math.round(totalcount / pageSize)
+                                    pageNumb: pageInd
                                 }));
                                 getProd();
                             }}>

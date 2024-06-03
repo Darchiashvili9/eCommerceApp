@@ -11,8 +11,8 @@ function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSel
         console.log('Value is:', message);
     };
 
-    const onReset = (event: any) => {
-        event.target.value = undefined;
+    const onReset = () => {
+        setMessage('');
         setShopParamsSelected((item: any) => ({ ...item, search: "" }));
     };
 
@@ -22,6 +22,13 @@ function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSel
                 onChange={(ev) => {
                     setMessage(ev.target.value);
                 }}
+
+                onKeyUp={(ev) => {
+                    if (ev.key === 'Enter') {
+                        onSearch;
+                    }
+                }}
+
                 value={message} />
 
             <button className="btn btn-outline-primary my-2"
