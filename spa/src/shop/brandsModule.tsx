@@ -18,7 +18,7 @@ function BrandsModule({ brandIdSelected, setShopParamsSelected, getProducts }
         })();
     }, []);
 
-    const getBrands = async () => {
+    const getBrands = async function () {
         try {
             setBrands([{ id: 0, name: "All" }, ...await ShopService.getBrands()]);
         }

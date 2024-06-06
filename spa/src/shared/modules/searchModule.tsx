@@ -4,14 +4,14 @@ function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSel
 
     const [message, setMessage] = useState('');
 
-    const onSearch = () => {
+    const onSearch = function () {
         setShopParamsSelected((item: any) => ({ ...item, pageNumb: 1, search: message }));
         getProducts();
 
         console.log('Value is:', message);
     };
 
-    const onReset = () => {
+    const onReset = function () {
         setMessage('');
         setShopParamsSelected((item: any) => ({ ...item, search: "" }));
     };

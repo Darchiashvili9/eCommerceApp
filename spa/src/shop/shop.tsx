@@ -30,7 +30,6 @@ function Shop() {
                 getProducts();
                 shopParamsSelected
                 console.log('i fire once');
-
             }
             catch (error) {
                 console.log(error);
@@ -38,7 +37,7 @@ function Shop() {
         })();
     }, [shopParamsSelected/*, totalCount*/]);
 
-    const getProducts = async () => {
+    const getProducts = async function () {
         try {
             var response = await ShopService.getProducts(shopParamsSelected);
             setProducts(response.data);

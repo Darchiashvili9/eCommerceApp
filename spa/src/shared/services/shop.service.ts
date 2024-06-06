@@ -4,8 +4,7 @@ import { IType } from "../models/productType";
 import { ShopParams } from "../models/shopParams";
 
 const ShopService = {
-
-    getProducts: async (shopParams: ShopParams) => {
+    getProducts: async function (shopParams: ShopParams) {
 
         console.log(shopParams)
 
@@ -27,13 +26,12 @@ const ShopService = {
         params.append("pageIndex", shopParams.pageNumb.toString());
         params.append("pageSize", shopParams.pageSiz.toString());
 
-
         const resp = await fetch(baseUrl + "/products?" + params.toString());
         const response: IPagination = await resp.json();
         return response;
     },
 
-    getBrands: async () => {
+    getBrands: async function () {
         const resp = await fetch(baseUrl + '/products/brands');
         const response: IBrand[] = await resp.json();
         return response;
