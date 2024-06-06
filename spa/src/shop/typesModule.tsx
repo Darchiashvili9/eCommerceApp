@@ -35,7 +35,7 @@ function TypesModule({ typeIdSelected, setShopParamsSelected, getProducts }
                         key={index}
                         onClick={() => {
                             setShopParamsSelected((item: any) => ({ ...item, typeId: type.id, pageNumb: 1 }));
-                            getProducts();
+                           // getProducts();
                         }}>
                         {type.name}
                     </li>

@@ -5,7 +5,7 @@ function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSel
     const [message, setMessage] = useState('');
 
     const onSearch = () => {
-        setShopParamsSelected((item: any) => ({ ...item, search: message }));
+        setShopParamsSelected((item: any) => ({ ...item, pageNumb: 1, search: message }));
         getProducts();
 
         console.log('Value is:', message);

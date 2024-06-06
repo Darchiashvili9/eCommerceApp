@@ -29,12 +29,14 @@ function Shop() {
             try {
                 getProducts();
                 shopParamsSelected
+                console.log('i fire once');
+
             }
             catch (error) {
                 console.log(error);
             }
         })();
-    }, [shopParamsSelected, totalCount]);
+    }, [shopParamsSelected/*, totalCount*/]);
 
     const getProducts = async () => {
         try {

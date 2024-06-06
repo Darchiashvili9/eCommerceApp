@@ -15,7 +15,7 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
                         const element = event.target as HTMLInputElement
                         var numb: number = + element.innerText;
                         setShopParamsSelected((item: any) => ({ ...item, pageNumb: numb }));
-                        getProd();
+                    //    getProd();
                     }}>
                     {number < 2 ? 1 : number}
                 </Pagination.Item>
@@ -35,7 +35,7 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
                                     ...item,
                                     pageNumb: 1
                                 }));
-                                getProd();
+                             //   getProd();
                             }}>
                         </Pagination.First>
 
@@ -45,7 +45,7 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
                                     ...item,
                                     pageNumb: pageNumber > 1.99 ? pageNumber - 1 : 1
                                 }));
-                                getProd();
+                            //    getProd();
                             }}>
                         </Pagination.Prev>
 
@@ -66,7 +66,7 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
                                     ...item,
                                     pageNumb: pageInd
                                 }));
-                                getProd();
+                           //     getProd();
                             }}>
                         </Pagination.Next>
 
@@ -76,7 +76,7 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
                                     ...item,
                                     pageNumb: Math.round(totalcount / pageSize)
                                 }));
-                                getProd();
+                           //     getProd();
                             }}>
                         </Pagination.Last>
                     </Pagination>

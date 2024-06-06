@@ -35,7 +35,7 @@ function BrandsModule({ brandIdSelected, setShopParamsSelected, getProducts }
                         key={index}
                         onClick={() => {
                             setShopParamsSelected((item: any) => ({ ...item, brandId: brand.id, pageNumb: 1 }));
-                            getProducts();
+                          //  getProducts();
                         }}>
                         {brand.name}
                     </li>
