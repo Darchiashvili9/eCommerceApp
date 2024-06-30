@@ -1,4 +1,8 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./navbar.css";
+import Shop from "../../shop/shop";
+import HomeModule from "../../home/homeModule";
+import ProductDetailsModule from "../../shop/productDetailsModule";
 
 function Navbar() {
     console.log("navbar");
@@ -9,10 +13,32 @@ function Navbar() {
             <img src="/public/images/logo.png" alt="logo"></img>
 
             <nav className="my-2 my-md-0 mr-md-3 text-uppercase">
-                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Home </a>
-                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#"> Shop  </a>
+                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home </a>
+                <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="/shop"> Shop  </a>
                 <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#"> Contact</a>
             </nav>
+
+            {/*<BrowserRouter>*/}
+
+            {/*    <Routes>*/}
+            {/*        <Route*/}
+            {/*            path="/"*/}
+            {/*            element={<HomeModule />}>*/}
+            {/*        </Route>*/}
+            {/*        <Route*/}
+            {/*            path="/shop"*/}
+            {/*            element={<Shop />}>*/}
+            {/*        </Route>*/}
+            {/*        <Route*/}
+            {/*            path="/shop/:id"*/}
+            {/*            element={<ProductDetailsModule />}>*/}
+            {/*        </Route>*/}
+            {/*        <Route*/}
+
+            {/*        >*/}
+            {/*        </Route>*/}
+            {/*    </Routes>*/}
+            {/*</BrowserRouter>*/}
 
             <div className="d-flex align-items-center">
                 <a className="position-relative">
