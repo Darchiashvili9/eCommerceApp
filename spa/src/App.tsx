@@ -5,7 +5,6 @@ import Routing from './core/routing';
 function App() {
     return (
         <div className="App">
-
             <Navbar />
 
             <div className="container">
@@ -13,7 +12,6 @@ function App() {
                 <Routing />
 
             </div>
-
         </div>
     );
 }
