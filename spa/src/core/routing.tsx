@@ -3,9 +3,9 @@ import {
     Route,
     BrowserRouter,
 } from "react-router-dom";
-import HomeModule from "./home/homeModule";
-import Shop from "./shop/shop";
-import ProductDetailsModule from "./shop/productDetailsModule"
+import HomeModule from "../home/homeModule";
+import Shop from "../shop/shop";
+import ProductDetailsModule from "../shop/productDetailsModule"
 
 
 function Routing() {
@@ -27,9 +27,7 @@ function Routing() {
                         path="/shop/:id"
                         element={<ProductDetailsModule />}>
                     </Route>
-                    <Route
-
-                        >
+                    <Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
