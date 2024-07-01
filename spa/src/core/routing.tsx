@@ -1,19 +1,12 @@
-import {
-    Routes,
-    Route,
-    BrowserRouter,
-} from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HomeModule from "../home/homeModule";
 import Shop from "../shop/shop";
 import ProductDetailsModule from "../shop/productDetailsModule"
 
-
 function Routing() {
-
     return (
         <div>
             <BrowserRouter>
-
                 <Routes>
                     <Route
                         path="/"
@@ -31,7 +24,6 @@ function Routing() {
                     </Route>
                 </Routes>
             </BrowserRouter>
-
         </div>
     );
 }
