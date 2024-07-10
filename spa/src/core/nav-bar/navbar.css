@@ -23,3 +23,10 @@ nav{
     right:32px;
 }
 
+notActive{
+    text-decoration:none;
+    color:#343a40;
+}
+Active{
+    color:orange;
+}

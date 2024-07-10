@@ -16,10 +16,9 @@ function Navbar() {
                         style={({ isActive }) =>
                             isActive ?
                                 {
-                                    color: '#fff',
-                                    background: '#7600dc',
+                                    color: 'orange'
                                 }
-                                : { color: '#545e6f', background: '#f0f0f0' }}>
+                                : {color: '#343a40' }}>
                         Home
                     </NavLink>
 
@@ -29,10 +28,9 @@ function Navbar() {
                         style={({ isActive }) =>
                             isActive ?
                                 {
-                                    color: '#fff',
-                                    background: '#7600dc',
+                                    color: 'orange'
                                 }
-                                : { color: '#545e6f', background: '#f0f0f0' }}>
+                                : { color: '#343a40' }}>
                         Shop
                     </NavLink>
 
@@ -42,10 +40,9 @@ function Navbar() {
                         style={({ isActive }) =>
                             isActive ?
                                 {
-                                    color: '#fff',
-                                    background: '#7600dc',
+                                    color: 'orange'
                                 }
-                                : { color: '#545e6f', background: '#f0f0f0' }}>
+                                : { color: '#343a40' }}>
                         Contact
                     </NavLink>
                 </nav>
