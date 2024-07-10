@@ -7,7 +7,9 @@ function Navbar() {
     return (
         <div>
             <div className="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
-                <img src="/public/images/logo.png" alt="logo"></img>
+                <a href="/">
+                    <img src="/public/images/logo.png" alt="logo" ></img>
+                </a>
 
                 <nav className="my-2 my-md-0 mr-md-3 text-uppercase">
                     <NavLink
@@ -18,7 +20,7 @@ function Navbar() {
                                 {
                                     color: 'orange'
                                 }
-                                : {color: '#343a40' }}>
+                                : { color: '#343a40' }}>
                         Home
                     </NavLink>
 
