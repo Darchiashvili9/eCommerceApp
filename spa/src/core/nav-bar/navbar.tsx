@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
 function Navbar() {
@@ -7,11 +8,48 @@ function Navbar() {
         <div>
             <div className="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
                 <img src="/public/images/logo.png" alt="logo"></img>
+
                 <nav className="my-2 my-md-0 mr-md-3 text-uppercase">
-                    <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Home </a>
-                    <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="/shop"> Shop  </a>
-                    <a className="me-3 py-2 link-body-emphasis text-decoration-none" href="#"> Contact</a>
+                    <NavLink
+                        className="me-3 py-2 link-body-emphasis text-decoration-none"
+                        to="/"
+                        style={({ isActive }) =>
+                            isActive ?
+                                {
+                                    color: '#fff',
+                                    background: '#7600dc',
+                                }
+                                : { color: '#545e6f', background: '#f0f0f0' }}>
+                        Home
+                    </NavLink>
+
+                    <NavLink
+                        className="me-3 py-2 link-body-emphasis text-decoration-none"
+                        to="/shop"
+                        style={({ isActive }) =>
+                            isActive ?
+                                {
+                                    color: '#fff',
+                                    background: '#7600dc',
+                                }
+                                : { color: '#545e6f', background: '#f0f0f0' }}>
+                        Shop
+                    </NavLink>
+
+                    <NavLink
+                        className="me-3 py-2 link-body-emphasis text-decoration-none"
+                        to="/contact"
+                        style={({ isActive }) =>
+                            isActive ?
+                                {
+                                    color: '#fff',
+                                    background: '#7600dc',
+                                }
+                                : { color: '#545e6f', background: '#f0f0f0' }}>
+                        Contact
+                    </NavLink>
                 </nav>
+
                 <div className="d-flex align-items-center">
                     <a className="position-relative">
                         <i className="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>

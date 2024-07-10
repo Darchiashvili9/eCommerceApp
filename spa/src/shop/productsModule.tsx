@@ -25,14 +25,14 @@ function ProductsModule({ prods }: { prods: IProduct[] | undefined }) {
                             <CardImg className="card-img-top img-fluid bg-info" role="img" src={prod.pictureUrl} style={{ maxHeight: "300px" }} />
                             <Card.Body className="d-flex flex-column">
                                 <Card.Title>
-                                    <a href="#" className='text-uppercase'>
+                                    <a href={"/shop/" + prod.id} className='text-uppercase'>
                                         {prod.name}
                                     </a>
                                 </Card.Title>
                                 <Card.Title className="mb-2">{currencyFormat(prod.price)}</Card.Title>
                                 <div className="btn-group mt-auto" style={styles.btnGroup}>
-                                    <button type="button" className="btn  btn-outline-secondary fa fa-shopping-cart mr-2" style={styles.btn}></button>
-                                    <button type="button" className="btn  btn-outline-secondary" style={styles.btn}>View</button>
+                                    <a type="button" className="btn  btn-outline-secondary fa fa-shopping-cart mr-2" style={styles.btn}></a>
+                                    <a type="button" className="btn  btn-outline-secondary" style={styles.btn} href={"/shop/" + prod.id}>View</a>
                                 </div>
                             </Card.Body>
                         </Card>
