@@ -30,3 +30,7 @@ notActive{
 Active{
     color:orange;
 }
+
+a{
+    padding-right:15px;
+}
