@@ -44,7 +44,7 @@ const ShopService = {
         return response;
     },
 
-    getProduct: async function (id: string) {
+    getProduct: async function (id: number) {
         const resp = await fetch(baseUrl + '/products/' + id);
         const response: IProduct = await resp.json();
         return response;

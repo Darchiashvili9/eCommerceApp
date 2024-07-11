@@ -21,8 +21,7 @@ function ProductDetailsModule() {
 
     const getProduct = async function () {
         try {
-            setProduct(await ShopService.getProduct(params!.id!.toString()));
-
+            setProduct(await ShopService.getProduct(+params.id!));
         }
         catch (error) {
             console.log(error);
@@ -30,8 +29,17 @@ function ProductDetailsModule() {
     }
 
     return (
-        <div>
-            <h1>{product?.name}</h1>
+        <div className="row" >
+
+            <div className="col-6">
+                <img src={product?.pictureUrl} alt={product?.name} className="img-fluid w-100"></img>
+
+
+            </div>
+
+
+
+
         </div>
     );
 }
