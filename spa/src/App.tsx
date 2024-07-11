@@ -8,9 +8,11 @@ import ProductDetailsModule from './shop/productDetailsModule';
 function App() {
     return (
         <div className="App">
-            <div className="container">
-                <BrowserRouter>
-                    <Navbar />
+            <BrowserRouter>
+                <Navbar />
+
+                <div className="container">
+
                     <Routes>
                         <Route
                             path="/"
@@ -27,8 +29,10 @@ function App() {
                         <Route>
                         </Route>
                     </Routes>
-                </BrowserRouter>
-            </div>
+
+                </div>
+
+            </BrowserRouter>
         </div>
     );
 }
