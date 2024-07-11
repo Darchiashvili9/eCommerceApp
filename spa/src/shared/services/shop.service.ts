@@ -1,6 +1,7 @@
 import { IBrand } from "../models/brand";
 import { IPagination } from "../models/paginationModel";
 import { IType } from "../models/productType";
+import { IProduct } from "../models/product";
 import { ShopParams } from "../models/shopParams";
 
 const ShopService = {
@@ -42,6 +43,12 @@ const ShopService = {
         const response: IType[] = await resp.json();
         return response;
     },
+
+    getProduct: async function (id: string) {
+        const resp = await fetch(baseUrl + '/products/' + id);
+        const response: IProduct = await resp.json();
+        return response;
+    }
 };
 
 export const baseUrl = new URL("https://localhost:5001/api");
