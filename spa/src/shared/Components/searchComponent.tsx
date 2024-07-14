@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSelected: Function, getProducts: Function }) {
+function SearchComponent({ setShopParamsSelected, getProducts }: { setShopParamsSelected: Function, getProducts: Function }) {
 
     const [message, setMessage] = useState('');
 
@@ -43,4 +43,4 @@ function SearchModule({ setShopParamsSelected, getProducts }: { setShopParamsSel
         </div >
     );
 }
-export default SearchModule;
+export default SearchComponent;

@@ -1,5 +1,5 @@
 
-function PagingHeaderModule({ totalCount, pageNumber, pageSize }
+function PagingHeaderComponent({ totalCount, pageNumber, pageSize }
     : { totalCount: number, pageNumber: number, pageSize: number }) {
 
     return (
@@ -34,4 +34,4 @@ function PagingHeaderModule({ totalCount, pageNumber, pageSize }
         </header>
     );
 }
-export default PagingHeaderModule;
+export default PagingHeaderComponent;

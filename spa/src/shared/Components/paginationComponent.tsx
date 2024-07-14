@@ -1,6 +1,6 @@
 import Pagination from 'react-bootstrap/Pagination';
 
-function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelected, getProd }
+function PaginationComponent({ totalcount, pageNumber, pageSize, setShopParamsSelected, getProd }
     : { totalcount: number, pageNumber: number, pageSize: number, setShopParamsSelected: Function, getProd: Function }) {
 
     const getPaginationItems = () => {
@@ -87,4 +87,4 @@ function PaginationModule({ totalcount, pageNumber, pageSize, setShopParamsSelec
         </div>
     );
 }
-export default PaginationModule;
+export default PaginationComponent;

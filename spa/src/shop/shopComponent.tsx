@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import { IProduct } from '../shared/models/product';
 import ShopService from "../shared/services/shop.service";
 import "./shop.css";
-import PaginationModule from "../shared/modules/paginationModule";
-import BrandsModule from "./brandsModule";
-import TypesModule from "./typesModule";
-import SortModule from "./sortModule";
-import SearchModule from "../shared/modules/searchModule";
-import ProductsModule from "./productsModule";
-import PagingHeaderModule from "../shared/modules/pagingHeaderModule";
+import PaginationComponent from "../shared/Components/paginationComponent";
+import BrandsComponent from "./brandsComponent";
+import TypesComponent from "./typesComponent";
+import SortModule from "./sortComponent";
+import SearchComponent from "../shared/Components/searchComponent";
+import ProductsComponent from "./productsComponent";
+import PagingHeaderComponent from "../shared/Components/pagingHeaderComponent";
 import { ShopParams } from "../shared/models/shopParams";
 
-function Shop() {
+function ShopComponent() {
     const [products, setProducts] = useState<IProduct[]>();
     const [totalCount = 0, setTotalCount] = useState<number>();
 
@@ -63,20 +63,20 @@ function Shop() {
 
                     <h5 className="text-warning ml-3">Brands</h5>
                     <div>
-                        <BrandsModule
+                        <BrandsComponent
                             brandIdSelected={shopParamsSelected.brandId}
                             setShopParamsSelected={setShopParamsSelected}
                             getProducts={getProducts}>
-                        </BrandsModule>
+                        </BrandsComponent>
                     </div>
 
                     <h5 className="text-warning ml-3">Types</h5>
                     <div>
-                        <TypesModule
+                        <TypesComponent
                             typeIdSelected={shopParamsSelected.typeId}
                             setShopParamsSelected={setShopParamsSelected}
                             getProducts={getProducts}>
-                        </TypesModule>
+                        </TypesComponent>
                     </div>
 
                 </section>
@@ -85,40 +85,40 @@ function Shop() {
                     <div className="d-flex justify-content-between align-items-center pb-2">
 
                         <div>
-                            <PagingHeaderModule
+                            <PagingHeaderComponent
                                 totalCount={totalCount}
                                 pageNumber={shopParamsSelected.pageNumb}
                                 pageSize={shopParamsSelected.pageSiz}>
-                            </PagingHeaderModule>
+                            </PagingHeaderComponent>
                         </div>
 
                         <div className="form-inline mt-2">
-                            <SearchModule
+                            <SearchComponent
                                 setShopParamsSelected={setShopParamsSelected}
                                 getProducts={getProducts}>
-                            </SearchModule>
+                            </SearchComponent>
                         </div>
 
                     </div>
 
                     <div>
-                        <ProductsModule
+                        <ProductsComponent
                             prods={products}>
-                        </ProductsModule>
+                        </ProductsComponent>
                     </div>
 
                     <div>
-                        <PaginationModule
+                        <PaginationComponent
                             totalcount={totalCount}
                             pageNumber={shopParamsSelected.pageNumb}
                             pageSize={shopParamsSelected.pageSiz}
                             setShopParamsSelected={setShopParamsSelected}
                             getProd={getProducts}>
-                        </PaginationModule>
+                        </PaginationComponent>
                     </div>
                 </section>
             </div>
         </div >
     );
 }
-export default Shop;
+export default ShopComponent;

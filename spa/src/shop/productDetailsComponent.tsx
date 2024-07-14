@@ -4,7 +4,7 @@ import { IProduct } from "../shared/models/product";
 import { useParams } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 
-function ProductDetailsModule() {
+function ProductDetailsComponent() {
 
     const params = useParams();
     const [product, setProduct] = useState<IProduct>();
@@ -61,4 +61,4 @@ function ProductDetailsModule() {
         </div>
     );
 }
-export default ProductDetailsModule;
+export default ProductDetailsComponent;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IBrand } from "../shared/models/brand";
 import ShopService from "../shared/services/shop.service";
 
-function BrandsModule({ brandIdSelected, setShopParamsSelected, getProducts }
+function BrandsComponent({ brandIdSelected, setShopParamsSelected, getProducts }
     : { brandIdSelected: number, setShopParamsSelected: Function, getProducts: Function }) {
 
     const [brands, setBrands] = useState<IBrand[]>();
@@ -44,4 +44,4 @@ function BrandsModule({ brandIdSelected, setShopParamsSelected, getProducts }
         </ul>
     );
 }
-export default BrandsModule;
+export default BrandsComponent;

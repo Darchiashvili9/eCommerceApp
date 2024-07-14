@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/esm/Card";
 import CardImg from "react-bootstrap/esm/CardImg";
 
-function HomeModule() {
+function HomeComponent() {
 
     return (
         <div className="container">
@@ -72,4 +72,4 @@ function HomeModule() {
         </div >
     );
 }
-export default HomeModule;
+export default HomeComponent;

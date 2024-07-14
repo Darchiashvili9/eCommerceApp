@@ -11,7 +11,7 @@ var styles = {
     }
 };
 
-function ProductsModule({ prods }: { prods: IProduct[] | undefined }) {
+function ProductsComponent({ prods }: { prods: IProduct[] | undefined }) {
     function currencyFormat(num: number) {
         return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
@@ -42,4 +42,4 @@ function ProductsModule({ prods }: { prods: IProduct[] | undefined }) {
         </div>
     );
 }
-export default ProductsModule;
+export default ProductsComponent;

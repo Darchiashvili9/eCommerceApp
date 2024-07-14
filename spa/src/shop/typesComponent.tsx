@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IType } from "../shared/models/productType";
 import ShopService from "../shared/services/shop.service";
 
-function TypesModule({ typeIdSelected, setShopParamsSelected, getProducts }
+function TypesComponent({ typeIdSelected, setShopParamsSelected, getProducts }
     : { typeIdSelected: number, setShopParamsSelected: Function, getProducts: Function }) {
 
     const [types, setTypes] = useState<IType[]>();
@@ -44,4 +44,4 @@ function TypesModule({ typeIdSelected, setShopParamsSelected, getProducts }
         </ul>
     );
 }
-export default TypesModule;
+export default TypesComponent;
