@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/esm/Card";
-import { IProduct } from "../shared/models/products";
+import { IProduct } from "../shared/models/product";
 import { CardImg } from "react-bootstrap";
 
 var styles = {
