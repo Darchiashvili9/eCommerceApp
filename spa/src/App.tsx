@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css'
 import NavbarComponent from "./core/nav-bar/navbarComponent"
 import HomeComponent from './home/homeComponent';
@@ -38,10 +38,11 @@ function App() {
                         path="/contact"
                         element={
                             <React.Suspense fallback={<div>Product Details are loading please wait...</div>}>
-                            <div>geegegeg</div>
+                                <div>geegegeg</div>
                             </React.Suspense>
                         }
                     />
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>
         </div >
