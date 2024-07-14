@@ -21,7 +21,7 @@ function App() {
                     <Route
                         path="/shop"
                         element={
-                            <React.Suspense fallback={<div>Component1 are loading please wait...</div>}>
+                            <React.Suspense fallback={<div>Shop loading please wait...</div>}>
                                 <ShopComponent />
                             </React.Suspense>
                         }
@@ -29,14 +29,19 @@ function App() {
                     <Route
                         path="/shop/:id"
                         element={
-                            <React.Suspense fallback={<div>Component1 are loading please wait...</div>}>
+                            <React.Suspense fallback={<div>Product Details are loading please wait...</div>}>
                                 <ProductDetailsComponent />
                             </React.Suspense>
                         }
                     />
-                    <Route>
-
-                    </Route>
+                    <Route
+                        path="/contact"
+                        element={
+                            <React.Suspense fallback={<div>Product Details are loading please wait...</div>}>
+                            <div>geegegeg</div>
+                            </React.Suspense>
+                        }
+                    />
                 </Routes>
             </div>
         </div >
