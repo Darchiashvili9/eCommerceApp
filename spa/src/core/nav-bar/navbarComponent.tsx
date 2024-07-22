@@ -47,6 +47,19 @@ function NavbarComponent() {
                                 : { color: '#343a40' }}>
                         Contact
                     </NavLink>
+
+                    <NavLink
+                        className="me-3 py-2 link-body-emphasis text-decoration-none"
+                        to="/testError"
+                        style={({ isActive }) =>
+                            isActive ?
+                                {
+                                    color: 'orange'
+                                }
+                                : { color: '#343a40' }}>
+                        Test-Error
+                    </NavLink>
+
                 </nav>
 
                 <div className="d-flex align-items-center">

@@ -4,6 +4,7 @@ import NavbarComponent from "./core/nav-bar/navbarComponent"
 import HomeComponent from './home/homeComponent';
 import { lazy } from 'react';
 import React from 'react';
+import TestErrorComponent from './core/test-error/testErrorComponent';
 
 const ShopComponent = lazy(() => import('./shop/shopComponent'));
 const ProductDetailsComponent = lazy(() => import('./shop/productDetailsComponent'));
@@ -42,6 +43,17 @@ function App() {
                             </React.Suspense>
                         }
                     />
+
+                    <Route
+                        path="/testError"
+                        element={
+                            <React.Suspense fallback={<div>testError Component are loading please wait...</div>}>
+                                <TestErrorComponent />
+                            </React.Suspense>
+                        }
+                    />
+
+
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>
