@@ -1,12 +1,13 @@
 import { IProduct } from "../../shared/models/product";
-import { baseUrl } from "../../shared/services/shop.service";
+import useAxios from "../interceptors/error.interceptor";
+
 
 function TestErrorComponent() {
+    const { axiosInstance } = useAxios();
+
     async function get404Error() {
         try {
-            const resp = await fetch(baseUrl + '/products/' + 42);
-            const response: IProduct = await resp.json();
-            console.log(response)
+            const response: IProduct = (await axiosInstance.get(axiosInstance.getUri() + '/api/products/' + 42)).data;
             return response;
         }
         catch (error) {
@@ -16,9 +17,7 @@ function TestErrorComponent() {
 
     async function get500Error() {
         try {
-            const resp = await fetch(baseUrl + '/buggy/servererror');
-            const response: IProduct = await resp.json();
-            console.log(response)
+            const response: IProduct = (await axiosInstance.get(axiosInstance.getUri() + '/buggy/servererror')).data;
             return response;
         }
 
@@ -29,9 +28,7 @@ function TestErrorComponent() {
 
     async function get400Error() {
         try {
-            const resp = await fetch(baseUrl + '/buggy/badrequest');
-            const response: IProduct = await resp.json();
-            console.log(response)
+            const response: IProduct = (await axiosInstance.get(axiosInstance.getUri() + '/buggy/badrequest')).data;
             return response;
         }
         catch (error) {
@@ -41,9 +38,7 @@ function TestErrorComponent() {
 
     async function get400ValidationError() {
         try {
-            const resp = await fetch(baseUrl + '/products/fortytwo');
-            const response: IProduct = await resp.json();
-            console.log(response)
+            const response: IProduct = (await axiosInstance.get(axiosInstance.getUri() + '/products/fortytwo')).data;
             return response;
         }
         catch (error) {

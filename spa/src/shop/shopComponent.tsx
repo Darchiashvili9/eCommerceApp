@@ -10,10 +10,13 @@ import SearchComponent from "../shared/Components/searchComponent";
 import ProductsComponent from "./productsComponent";
 import PagingHeaderComponent from "../shared/Components/pagingHeaderComponent";
 import { ShopParams } from "../shared/models/shopParams";
+import useAxios from "../core/interceptors/error.interceptor";
+import { IPagination } from "../shared/models/paginationModel";
 
 function ShopComponent() {
     const [products, setProducts] = useState<IProduct[]>();
     const [totalCount = 0, setTotalCount] = useState<number>();
+            const { axiosInstance } = useAxios();
 
     const [shopParamsSelected, setShopParamsSelected] = useState<ShopParams>({
         brandId: 0,
@@ -39,9 +42,27 @@ function ShopComponent() {
 
     const getProducts = async function () {
         try {
-            var response = await ShopService.getProducts(shopParamsSelected);
-            setProducts(response.data);
-            setTotalCount(response.count);
+            const params = new URLSearchParams(axiosInstance.getUri());
+
+            if (shopParamsSelected.brandId !== 0) {
+                params.append("brandId", shopParamsSelected.brandId.toString());
+            }
+
+            if (shopParamsSelected.typeId !== 0) {
+                params.append("typeId", shopParamsSelected.typeId.toString());
+            }
+
+            if (shopParamsSelected.search) {
+                params.append("search", shopParamsSelected.search.toString());
+            }
+
+            params.append("sort", shopParamsSelected.sort);
+            params.append("pageIndex", shopParamsSelected.pageNumb.toString());
+            params.append("pageSize", shopParamsSelected.pageSiz.toString());
+
+            const resp: IPagination = (await axiosInstance.get(axiosInstance.getUri() + "/products?" + params.toString())).data;
+            setProducts(resp.data);
+            setTotalCount(resp.count);
         }
         catch (error) {
             console.log(error);

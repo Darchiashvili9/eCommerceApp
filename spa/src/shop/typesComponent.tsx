@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { IType } from "../shared/models/productType";
-import ShopService from "../shared/services/shop.service";
+import useAxios from "../core/interceptors/error.interceptor";
 
 function TypesComponent({ typeIdSelected, setShopParamsSelected, getProducts }
     : { typeIdSelected: number, setShopParamsSelected: Function, getProducts: Function }) {
 
     const [types, setTypes] = useState<IType[]>();
+    const { axiosInstance } = useAxios();
 
     useEffect(() => {
         (function () {
@@ -20,7 +21,8 @@ function TypesComponent({ typeIdSelected, setShopParamsSelected, getProducts }
 
     async function getTypes() {
         try {
-            setTypes([{ id: 0, name: "All" }, ...await ShopService.getTypes()]);
+            const response: IType[] = (await axiosInstance.get(axiosInstance.getUri() + '/products/types')).data;
+            setTypes([{ id: 0, name: "All" }, ...await response]);
         }
         catch (error) {
             console.log(error);
@@ -35,7 +37,7 @@ function TypesComponent({ typeIdSelected, setShopParamsSelected, getProducts }
                         key={index}
                         onClick={() => {
                             setShopParamsSelected((item: any) => ({ ...item, typeId: type.id, pageNumb: 1 }));
-                           // getProducts();
+                            // getProducts();
                         }}>
                         {type.name}
                     </li>

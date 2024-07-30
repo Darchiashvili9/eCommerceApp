@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { IBrand } from "../shared/models/brand";
-import ShopService from "../shared/services/shop.service";
+import useAxios from "../core/interceptors/error.interceptor";
 
 function BrandsComponent({ brandIdSelected, setShopParamsSelected, getProducts }
     : { brandIdSelected: number, setShopParamsSelected: Function, getProducts: Function }) {
 
     const [brands, setBrands] = useState<IBrand[]>();
+    const { axiosInstance } = useAxios();
 
     useEffect(() => {
         (function () {
@@ -20,7 +21,8 @@ function BrandsComponent({ brandIdSelected, setShopParamsSelected, getProducts }
 
     const getBrands = async function () {
         try {
-            setBrands([{ id: 0, name: "All" }, ...await ShopService.getBrands()]);
+            const response: IBrand[] = (await axiosInstance.get(axiosInstance.getUri() + '/products/brands')).data;
+            setBrands([{ id: 0, name: "All" }, ...await response]);
         }
         catch (error) {
             console.log(error);
@@ -35,7 +37,7 @@ function BrandsComponent({ brandIdSelected, setShopParamsSelected, getProducts }
                         key={index}
                         onClick={() => {
                             setShopParamsSelected((item: any) => ({ ...item, brandId: brand.id, pageNumb: 1 }));
-                          //  getProducts();
+                            //  getProducts();
                         }}>
                         {brand.name}
                     </li>

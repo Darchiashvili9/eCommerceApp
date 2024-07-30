@@ -3,13 +3,23 @@ import { IPagination } from "../models/paginationModel";
 import { IType } from "../models/productType";
 import { IProduct } from "../models/product";
 import { ShopParams } from "../models/shopParams";
+import useAxios from "../../core/interceptors/error.interceptor";
+
+
+
 
 const ShopService = {
+
+
     getProducts: async function (shopParams: ShopParams) {
 
-        console.log(shopParams)
 
-        const params = new URLSearchParams(baseUrl.search);
+        const { axiosInstance } = useAxios();
+
+        console.log(axiosInstance.getUri())
+        const params = new URLSearchParams(axiosInstance.getUri());
+
+
 
         if (shopParams.brandId !== 0) {
             params.append("brandId", shopParams.brandId.toString());
@@ -27,29 +37,32 @@ const ShopService = {
         params.append("pageIndex", shopParams.pageNumb.toString());
         params.append("pageSize", shopParams.pageSiz.toString());
 
-        const resp = await fetch(baseUrl + "/products?" + params.toString());
-        const response: IPagination = await resp.json();
-        return response;
+        const resp: IPagination = (await axiosInstance.get(axiosInstance.getUri() + "/products?" + params.toString())).data;
+        return resp;
     },
 
     getBrands: async function () {
-        const resp = await fetch(baseUrl + '/products/brands');
-        const response: IBrand[] = await resp.json();
+
+        const { axiosInstance } = useAxios();
+
+        const response: IBrand[] = (await axiosInstance.get(axiosInstance.getUri() + '/products/brands')).data;
         return response;
     },
 
     getTypes: async function () {
-        const resp = await fetch(baseUrl + '/products/types');
-        const response: IType[] = await resp.json();
+
+        const { axiosInstance } = useAxios();
+
+        const response: IType[] = (await axiosInstance.get(axiosInstance.getUri() + '/products/types')).data;
         return response;
     },
 
     getProduct: async function (id: number) {
-        const resp = await fetch(baseUrl + '/products/' + id);
-        const response: IProduct = await resp.json();
+
+        const { axiosInstance } = useAxios();
+
+        const response: IProduct = (await axiosInstance.get(axiosInstance.getUri() + '/products/' + id)).data;
         return response;
     }
 };
-
-export const baseUrl = new URL("https://localhost:5001/api");
 export default ShopService;

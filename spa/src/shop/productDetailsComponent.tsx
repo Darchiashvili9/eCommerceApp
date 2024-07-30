@@ -3,11 +3,13 @@ import ShopService from "../shared/services/shop.service";
 import { IProduct } from "../shared/models/product";
 import { useParams } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
+import useAxios from "../core/interceptors/error.interceptor";
 
 function ProductDetailsComponent() {
 
     const params = useParams();
     const [product, setProduct] = useState<IProduct>();
+    const { axiosInstance } = useAxios();
 
     useEffect(() => {
         (function () {
@@ -22,7 +24,8 @@ function ProductDetailsComponent() {
 
     const getProduct = async function () {
         try {
-            setProduct(await ShopService.getProduct(+params.id!));
+            const response: IProduct = (await axiosInstance.get(axiosInstance.getUri() + '/products/' + +params.id!)).data;
+            setProduct(await response);
         }
         catch (error) {
             console.log(error);
@@ -42,7 +45,7 @@ function ProductDetailsComponent() {
                 <p>{currencyFormat(product.price)}</p>
                 <div className="d-flex justify-content-start align-item-center">
                     <i className="fa fa-minus-circle text-warning mr-2" style={{ cursor: "pointer", fontSize: "2em" }}></i>
-                    <span className="font-weight-bold" style={{ fontSize:"1.5em" }}>2</span>
+                    <span className="font-weight-bold" style={{ fontSize: "1.5em" }}>2</span>
                     <i className="fa fa-plus-circle text-warning mx-2" style={{ cursor: "pointer", fontSize: "2em" }}></i>
                     <button className="btn btn-outline-secondary btn-lg ml-4">Add to Cart</button>
                 </div>
