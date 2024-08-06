@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { IProduct } from '../shared/models/product';
-import ShopService from "../shared/services/shop.service";
 import "./shop.css";
 import PaginationComponent from "../shared/Components/paginationComponent";
 import BrandsComponent from "./brandsComponent";

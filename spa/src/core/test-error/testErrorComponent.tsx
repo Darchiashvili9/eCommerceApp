@@ -1,6 +1,6 @@
+import { ToastContainer } from "react-toastify";
 import { IProduct } from "../../shared/models/product";
 import useAxios from "../interceptors/error.interceptor";
-
 
 function TestErrorComponent() {
     const { axiosInstance } = useAxios();
@@ -64,6 +64,8 @@ function TestErrorComponent() {
                 onClick={() => { get400ValidationError() }}>
                 test 400 Validation error
             </button>
+
+            <ToastContainer />
         </div>
     )
 }

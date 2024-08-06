@@ -1,5 +1,9 @@
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 const useAxios = () => {
     const navigate = useNavigate();
@@ -38,11 +42,22 @@ const useAxios = () => {
 
             console.log(error.response.status)
 
+            if (error.response.status === 400) {
+                toast.error(error.message, {
+                    position: 'bottom-center',
+                });
+            }
+            if (error.response.status === 401) {
+                toast.error(error.message, {
+                    position: 'bottom-center',
+                });
+            }
             if (error.response.status === 404)
                 navigate('/not-found')
             if (error.response.status === 500)
                 navigate('/server-error')
 
+          //  throw (error);
             return Promise.reject(error);
         }
     );
