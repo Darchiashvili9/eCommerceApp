@@ -43,9 +43,15 @@ const useAxios = () => {
             console.log(error.response.status)
 
             if (error.response.status === 400) {
-                toast.error(error.message, {
-                    position: 'bottom-center',
-                });
+
+                if (error.response.data.errors) {
+                    throw error.response.data
+                }
+                else {
+                    toast.error(error.message, {
+                        position: 'bottom-center',
+                    });
+                }
             }
             if (error.response.status === 401) {
                 toast.error(error.message, {
@@ -57,7 +63,7 @@ const useAxios = () => {
             if (error.response.status === 500)
                 navigate('/server-error')
 
-          //  throw (error);
+            //  throw (error);
             return Promise.reject(error);
         }
     );

@@ -15,7 +15,7 @@ import { IPagination } from "../shared/models/paginationModel";
 function ShopComponent() {
     const [products, setProducts] = useState<IProduct[]>();
     const [totalCount = 0, setTotalCount] = useState<number>();
-            const { axiosInstance } = useAxios();
+    const { axiosInstance } = useAxios();
 
     const [shopParamsSelected, setShopParamsSelected] = useState<ShopParams>({
         brandId: 0,

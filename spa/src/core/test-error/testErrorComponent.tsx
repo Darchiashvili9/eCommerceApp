@@ -1,9 +1,12 @@
 import { ToastContainer } from "react-toastify";
 import { IProduct } from "../../shared/models/product";
 import useAxios from "../interceptors/error.interceptor";
+import { useState } from "react";
 
 function TestErrorComponent() {
     const { axiosInstance } = useAxios();
+    const [validationErrors, setValidationErrors] = useState<any>();
+
 
     async function get404Error() {
         try {
@@ -41,8 +44,9 @@ function TestErrorComponent() {
             const response: IProduct = (await axiosInstance.get(axiosInstance.getUri() + '/products/fortytwo')).data;
             return response;
         }
-        catch (error) {
+        catch (error: any) {
             console.log(error);
+            setValidationErrors(error.errors);
         }
     }
 
@@ -64,6 +68,27 @@ function TestErrorComponent() {
                 onClick={() => { get400ValidationError() }}>
                 test 400 Validation error
             </button>
+
+            <div className="row mt-5">
+                {validationErrors ?
+                    //<div>{validationErrors}</div>
+
+
+                    validationErrors?.map((error: string, index: number) =>
+
+                        <li className="text-danger"
+                            key={index}
+                            value={error}>
+                            {error}
+                        </li>
+                    )
+
+                    :
+                    <div>
+
+                    </div>
+                }
+            </div>
 
             <ToastContainer />
         </div>
