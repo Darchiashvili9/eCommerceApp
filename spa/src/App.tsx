@@ -7,6 +7,7 @@ import React from 'react';
 import TestErrorComponent from './core/test-error/testErrorComponent';
 import ServerErrorComponent from './core/server-error/serverErrorComponent';
 import NotFoundErrorComponent from './core/not-found/notFoundErrorComponent';
+import SectionHeader from './core/section-header/sectionHeader';
 
 const ShopComponent = lazy(() => import('./shop/shopComponent'));
 const ProductDetailsComponent = lazy(() => import('./shop/productDetailsComponent'));
@@ -14,7 +15,14 @@ const ProductDetailsComponent = lazy(() => import('./shop/productDetailsComponen
 function App() {
     return (
         <div className="App">
-            <NavbarComponent />
+            <div>
+                <NavbarComponent />
+            </div>
+
+            <div>
+                <SectionHeader />
+            </div>
+
             <div className="container">
                 <Routes>
                     <Route

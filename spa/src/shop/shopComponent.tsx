@@ -69,7 +69,7 @@ function ShopComponent() {
     }
 
     return (
-        <div className="container">
+        <div className="container mt-5">
             <div className="row">
                 <section className="col-3">
 
