@@ -1,9 +1,7 @@
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { NavigateOptions, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-
 
 const useAxios = () => {
     const navigate = useNavigate();
@@ -60,8 +58,18 @@ const useAxios = () => {
             }
             if (error.response.status === 404)
                 navigate('/not-found')
-            if (error.response.status === 500)
-                navigate('/server-error')
+            if (error.response.status === 500) {
+                const navigateOptions: NavigateOptions = { state: { error: error.response.data } }
+
+
+
+
+
+                navigate('/server-error', navigateOptions)
+
+
+
+            }
 
             //  throw (error);
             return Promise.reject(error);

@@ -71,18 +71,13 @@ function TestErrorComponent() {
 
             <div className="row mt-5">
                 {validationErrors ?
-                    //<div>{validationErrors}</div>
-
-
                     validationErrors?.map((error: string, index: number) =>
-
                         <li className="text-danger"
                             key={index}
                             value={error}>
                             {error}
                         </li>
                     )
-
                     :
                     <div>
 
